@@ -1,0 +1,48 @@
+<!-- ============ cortina «El grano» (agente Entrada: partes/cortina.html + css/entrada.css + js/grano.js) ============
+     El grano cae por el canal de piedra y forma «1637»; una pincelada lo barre y destapa la portada.
+     Este script va ANTES de la cortina: solo con JS se enseña (html.cortina-activa), así que sin JS no
+     aparece nunca. Expone Tulla.cortina = { alAbrirse(fn), alRetirarse(fn), abrir(), retirar(), abierta, fuera }
+     y lanza en document los eventos «tulla:cortina-abre» y «tulla:cortina-fuera».
+     Red de seguridad: si js/grano.js no arranca en 2,5 s, o si algo se atasca, a los 8 s se va sola. -->
+<script>
+(function (d, w) {
+  var h = d.documentElement, T = w.Tulla = w.Tulla || {}, abierta = false, fuera = false, alAbrir = [], alFuera = [];
+  h.classList.add('js');
+  function avisar(lista, nombre) {
+    lista.splice(0).forEach(function (f) { try { f(); } catch (e) { console.warn(e); } });
+    try { d.dispatchEvent(new CustomEvent(nombre)); } catch (e) {}
+  }
+  function abrir() { if (abierta) return; abierta = true; h.classList.add('cortina-abriendo'); avisar(alAbrir, 'tulla:cortina-abre'); }
+  function retirar() {
+    if (fuera) return;
+    fuera = true;
+    clearTimeout(red1); clearTimeout(red2);
+    var c = d.getElementById('cortina');
+    if (c) c.hidden = true;
+    h.classList.remove('cortina-activa', 'cortina-abriendo');
+    h.classList.add('cortina-fuera');
+    abrir();
+    avisar(alFuera, 'tulla:cortina-fuera');
+  }
+  T.cortina = {
+    alAbrirse: function (f) { if (abierta) f(); else alAbrir.push(f); },
+    alRetirarse: function (f) { if (fuera) f(); else alFuera.push(f); },
+    abrir: abrir, retirar: retirar, enMarcha: false,
+    get abierta() { return abierta; }, get fuera() { return fuera; }
+  };
+  var red1 = setTimeout(function () { if (!T.cortina.enMarcha) retirar(); }, 2500);
+  var red2 = setTimeout(retirar, 8000);
+  var quieto = false;
+  try { quieto = w.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  if (quieto) retirar(); else h.classList.add('cortina-activa');
+})(document, window);
+</script>
+<div class="cortina" id="cortina" aria-hidden="true">
+  <canvas class="cortina__lienzo"></canvas>
+  <div class="cortina__texto">
+    <p class="cortina__anno">1637</p>
+    <p class="cortina__nombre">A Casa da Tulla</p>
+    <p class="cortina__lugar">Gomesende · Ourense</p>
+  </div>
+</div>
+<noscript><style>.cortina{display:none!important}</style></noscript>

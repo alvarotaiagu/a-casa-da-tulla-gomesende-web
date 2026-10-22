@@ -1,0 +1,161 @@
+/* A Casa da Tulla · módulo «Cuatro árboles» (js/arboles.js)
+   Todo bajo [data-modulo="arboles"]. Usa los tokens de css/estilos.css con respaldo.
+   Las láminas van en su papel (crema, tinta parda) en cualquier tramo de luz;
+   el corte y los textos siguen el color de la sección (currentColor). */
+
+[data-modulo="arboles"] {
+  --arb-papel: #F4EEDF;
+  --arb-plancha: #EFE6D3;
+  --arb-tinta: #2B2620;
+  --arb-cab: var(--cab, 72px);
+  --arb-recorrido: 100svh;
+  --arb-grano: #B98A3A;
+  position: relative;
+}
+
+/* ---------- cabecera: las cifras y «Ver fechas» ---------- */
+[data-modulo="arboles"] .arb-cabeza {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 28px;
+  padding-block: 14px; border-block: 1px solid var(--linea, rgba(43, 38, 32, .2));
+}
+[data-modulo="arboles"] .arb-cifras { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 0; margin: 0; padding: 0; list-style: none; }
+[data-modulo="arboles"] .arb-cifras li { display: inline-flex; align-items: baseline; gap: .38em; padding-right: 1.1em; margin-right: 1.1em; border-right: 1px solid var(--linea, rgba(43, 38, 32, .2)); }
+[data-modulo="arboles"] .arb-cifras li:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+[data-modulo="arboles"] .arb-cifras b { font: 400 1.75rem/1 var(--f-tit, 'IM Fell English', Georgia, serif); font-variant-numeric: oldstyle-nums; font-feature-settings: "onum" 1; }
+[data-modulo="arboles"] .arb-cifras span { font: 400 .74rem/1.3 var(--f-mono, ui-monospace, monospace); letter-spacing: .1em; text-transform: uppercase; color: var(--texto-2, #5B5047); }
+[data-modulo="arboles"] .arb-fechas:not(.btn) {
+  display: inline-flex; align-items: center; min-height: 48px; padding: 12px 24px; border-radius: 2px;
+  background: var(--btn-f, #506312); color: var(--btn-t, #F3EEE4); font: 600 .98rem/1.1 var(--f-txt, system-ui, sans-serif); text-decoration: none;
+}
+
+/* ---------- el corte de la casa ---------- */
+[data-modulo="arboles"] .arb-corte { margin: clamp(36px, 6vw, 72px) 0 clamp(56px, 9vw, 120px); }
+[data-modulo="arboles"] .arb-corte-lienzo { color: inherit; }
+[data-modulo="arboles"] .arb-corte-lienzo svg { width: 100%; height: auto; overflow: visible; }
+[data-modulo="arboles"] .arb-corte .cr-dibujo { stroke: currentColor; }
+[data-modulo="arboles"] .arb-corte .cr-rot { fill: currentColor; font: 400 15px/1 var(--f-mono, ui-monospace, monospace); letter-spacing: .05em; }
+[data-modulo="arboles"] .arb-corte .cr-num { fill: currentColor; font: italic 400 26px/1 var(--f-tit, Georgia, serif); }
+[data-modulo="arboles"] .arb-corte .cr-grano { fill: var(--arb-grano); }
+[data-modulo="arboles"] .arb-corte .cr-fuego { stroke: var(--ocaso, #C8693A); }
+[data-modulo="arboles"] .arb-corte .cr-tenue { opacity: .55; }
+[data-modulo="arboles"] .arb-corte .cr-k1 { stroke-width: 2; } [data-modulo="arboles"] .arb-corte .cr-k2 { stroke-width: 1.6; }
+[data-modulo="arboles"] .arb-corte .cr-k3 { stroke-width: 1.4; } [data-modulo="arboles"] .arb-corte .cr-k4 { stroke-width: 1.15; }
+[data-modulo="arboles"] .arb-corte .cr-k5 { stroke-width: .85; } [data-modulo="arboles"] .arb-corte .cr-k6 { stroke-width: .7; }
+[data-modulo="arboles"] .arb-corte .cr-k7 { stroke-width: .55; }
+[data-modulo="arboles"] .arb-corte-nota { margin-top: 14px; max-width: 46rem; font: 400 .84rem/1.55 var(--f-txt, system-ui, sans-serif); color: var(--texto-2, #5B5047); }
+[data-modulo="arboles"] .arb-corte-nota b { font-weight: 600; color: var(--texto, #2B2620); }
+
+/* ---------- las cuatro habitaciones ---------- */
+[data-modulo="arboles"] .arb-hab { position: relative; scroll-margin-top: var(--arb-cab); }
+[data-modulo="arboles"] .arb-hab + .arb-hab { margin-top: clamp(64px, 10vw, 120px); }
+[data-modulo="arboles"] .arb-escena {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+  align-items: center; gap: clamp(28px, 4.5vw, 72px);
+}
+[data-modulo="arboles"] .arb-hab:nth-child(even) .arb-escena { grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); }
+[data-modulo="arboles"] .arb-hab:nth-child(even) .arb-lamina { order: 2; }
+
+/* con movimiento en pantallas grandes: la escena se queda fijada mientras el árbol crece */
+[data-modulo="arboles"] .arb--fijo .arb-hab { height: calc(100svh - var(--arb-cab) + var(--arb-recorrido)); }
+[data-modulo="arboles"] .arb--fijo .arb-hab + .arb-hab { margin-top: 0; }
+[data-modulo="arboles"] .arb--fijo .arb-escena { position: sticky; top: var(--arb-cab); height: calc(100svh - var(--arb-cab)); }
+
+/* la lámina: papel, huella de la plancha y pie grabado */
+[data-modulo="arboles"] .arb-lamina { margin: 0; min-width: 0; display: flex; justify-content: center; align-items: center; }
+[data-modulo="arboles"] .arb-papel {
+  position: relative; width: min(100%, calc((100svh - var(--arb-cab) - 56px) * .8), 600px); aspect-ratio: 4 / 5;
+  padding: 5.5% 5.5% 10.5%; color: var(--arb-tinta);
+  background-color: var(--arb-papel);
+  background-image:
+    radial-gradient(120% 90% at 30% 20%, rgba(255, 255, 255, .35), rgba(255, 255, 255, 0) 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .17 0 0 0 0 .15 0 0 0 0 .12 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  box-shadow: 0 1px 0 rgba(43, 38, 32, .08), 0 22px 44px -28px rgba(43, 38, 32, .55);
+}
+[data-modulo="arboles"] .arb-plancha {
+  position: relative; height: 100%; padding: 2.5%;
+  background: var(--arb-plancha);
+  box-shadow: inset 0 0 0 1px rgba(43, 38, 32, .26), inset 0 0 14px rgba(43, 38, 32, .07);
+  outline: 1px solid rgba(43, 38, 32, .1); outline-offset: 5px;
+}
+[data-modulo="arboles"] .arb-plancha svg { width: 100%; height: 100%; overflow: visible; }
+[data-modulo="arboles"] .arb-pie {
+  position: absolute; left: 5.5%; right: 5.5%; bottom: 3.4%;
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  font: 400 clamp(.78rem, 1.05vw, 1rem)/1.2 var(--f-tit, 'IM Fell English', Georgia, serif); color: var(--arb-tinta);
+}
+[data-modulo="arboles"] .arb-pie-lam { letter-spacing: .14em; text-transform: uppercase; font-size: .86em; }
+[data-modulo="arboles"] .arb-pie-nom i { font-style: italic; }
+
+/* trazos de la lámina (los anchos van aquí para poder engordarlos en el móvil) */
+[data-modulo="arboles"] .lam-dibujo { stroke: var(--arb-tinta); }
+[data-modulo="arboles"] .lam-k1 { stroke-width: 1.75; } [data-modulo="arboles"] .lam-k2 { stroke-width: 1.35; }
+[data-modulo="arboles"] .lam-k3 { stroke-width: 1.15; } [data-modulo="arboles"] .lam-k4 { stroke-width: 1; }
+[data-modulo="arboles"] .lam-k5 { stroke-width: .8; } [data-modulo="arboles"] .lam-k6 { stroke-width: .6; }
+[data-modulo="arboles"] .lam-k7 { stroke-width: .5; } [data-modulo="arboles"] .lam-k8 { stroke-width: 1.5; }
+[data-modulo="arboles"] .lam-papel { fill: var(--arb-plancha); }
+[data-modulo="arboles"] .lam-lav { stroke: none; opacity: calc(var(--lav, 1) * .42); }
+[data-modulo="arboles"] .lam-lav-fruto { opacity: calc(var(--lav, 1) * .55); }
+[data-modulo="arboles"] .lam-tierra { opacity: .65; }
+
+/* con movimiento: los trazos se dibujan (pathLength=1 + stroke-dashoffset, lo escribe el JS) */
+[data-modulo="arboles"] .arb--mov .arb-tr { stroke-dasharray: 1 1; }
+[data-modulo="arboles"] .arb--mov .arb-aro ellipse,
+[data-modulo="arboles"] .arb--mov .arb-guia path { stroke-dasharray: 1 1; }
+
+/* el texto y el medallón con la foto del cuarto («fig. 2») */
+[data-modulo="arboles"] .arb-texto { position: relative; z-index: 1; min-width: 0; max-width: 31rem; }
+[data-modulo="arboles"] .arb-hab:nth-child(even) .arb-texto { justify-self: end; }
+[data-modulo="arboles"] .arb-medallon { position: relative; width: min(100%, 380px); aspect-ratio: 1.3; margin: 0 0 clamp(30px, 4.6vh, 46px); --abre: 1; }
+/* la foto es un botón que abre el visor de la web (por nombre, data-visor) */
+[data-modulo="arboles"] .arb-foto-btn { position: absolute; inset: 0; display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; border-radius: 50%; overflow: visible; cursor: zoom-in; }
+[data-modulo="arboles"] .arb-foto {
+  position: absolute; inset: 0; display: block; overflow: hidden; background: var(--granito, #BFB6A6);
+  clip-path: ellipse(calc(var(--abre) * 50%) calc(var(--abre) * 50%) at 50% 50%);
+}
+[data-modulo="arboles"] .arb-foto img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; transform: scale(calc(1.16 - .16 * var(--abre))); transition: none; }
+[data-modulo="arboles"] .es-abierta .arb-foto img { transition: transform 1.2s var(--sale, ease); }
+[data-modulo="arboles"] .es-abierta .arb-foto-btn:hover img { transform: scale(1.03); }
+[data-modulo="arboles"] .arb-aro { position: absolute; left: -12px; top: -12px; width: calc(100% + 24px); height: calc(100% + 24px); overflow: visible; pointer-events: none; }
+[data-modulo="arboles"] .arb-aro ellipse { fill: none; stroke: currentColor; stroke-width: .9; vector-effect: none; }
+[data-modulo="arboles"] .arb-aro .arb-aro-fino { stroke-width: .45; opacity: .7; }
+[data-modulo="arboles"] .arb-med-pie {
+  position: absolute; right: 2%; bottom: -2.2em; opacity: var(--abre);
+  font: 400 .68rem/1 var(--f-mono, ui-monospace, monospace); letter-spacing: .14em; text-transform: uppercase; color: var(--texto-2, #5B5047);
+}
+[data-modulo="arboles"] .arb-num { font: 400 .72rem/1.4 var(--f-mono, ui-monospace, monospace); letter-spacing: .18em; text-transform: uppercase; color: var(--acento, #506312); }
+[data-modulo="arboles"] .arb-nombre { margin: 8px 0 2px; font: 400 clamp(2.6rem, 4.4vw, 4.3rem)/1 var(--f-tit, 'IM Fell English', Georgia, serif); letter-spacing: -.005em; }
+[data-modulo="arboles"] .arb-arbol { font: italic 400 1.22rem/1.3 var(--f-tit, 'IM Fell English', Georgia, serif); color: var(--texto-2, #5B5047); }
+[data-modulo="arboles"] .arb-desc { margin-top: 16px; max-width: 30rem; }
+[data-modulo="arboles"] .arb-datos { display: flex; flex-wrap: wrap; gap: 8px 0; margin: 18px 0 0; padding: 0; list-style: none; font: 400 .78rem/1.35 var(--f-mono, ui-monospace, monospace); letter-spacing: .04em; color: var(--texto-2, #5B5047); }
+[data-modulo="arboles"] .arb-datos li { display: inline-flex; align-items: center; padding-right: .9em; margin-right: .9em; border-right: 1px solid var(--linea, rgba(43, 38, 32, .2)); }
+[data-modulo="arboles"] .arb-datos li:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+[data-modulo="arboles"] .arb-muestra { display: inline-block; width: .95em; height: .95em; margin-right: .5em; border-radius: 50%; background: var(--muestra); box-shadow: inset 0 0 0 1px rgba(43, 38, 32, .25); }
+
+/* la línea de llamada: del fruto al medallón */
+[data-modulo="arboles"] .arb-guia { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; color: var(--texto-2, #5B5047); }
+[data-modulo="arboles"] .arb-guia path { fill: none; stroke: currentColor; stroke-width: 1; }
+[data-modulo="arboles"] .arb-guia circle { fill: none; stroke: currentColor; stroke-width: 1.2; }
+
+/* ---------- móvil y tableta: una columna, sin fijar ---------- */
+@media (max-width: 899px) {
+  [data-modulo="arboles"] .arb-escena,
+  [data-modulo="arboles"] .arb-hab:nth-child(even) .arb-escena { grid-template-columns: minmax(0, 1fr); gap: 34px; }
+  [data-modulo="arboles"] .arb-hab:nth-child(even) .arb-lamina { order: 0; }
+  [data-modulo="arboles"] .arb-hab:nth-child(even) .arb-texto { justify-self: start; }
+  [data-modulo="arboles"] .arb-papel { width: min(100%, 520px); }
+  [data-modulo="arboles"] .arb-medallon { width: min(100%, 460px); }
+  [data-modulo="arboles"] .arb-guia { display: none; }
+}
+@media (max-width: 699px) {
+  /* rótulos del corte demasiado pequeños: los cuenta la nota de debajo */
+  [data-modulo="arboles"] .arb-corte .cr-textos { display: none; }
+  [data-modulo="arboles"] .arb-corte { margin-inline: calc(-1 * min(var(--lado, 16px), 16px) + 4px); }
+  [data-modulo="arboles"] .arb-cifras li { padding-right: .8em; margin-right: .8em; }
+  [data-modulo="arboles"] .arb-cifras b { font-size: 1.45rem; }
+  /* trazos un poco más gruesos: la lámina se ve a la mitad de tamaño */
+  [data-modulo="arboles"] .lam-k1 { stroke-width: 2.4; } [data-modulo="arboles"] .lam-k2 { stroke-width: 1.9; }
+  [data-modulo="arboles"] .lam-k3 { stroke-width: 1.6; } [data-modulo="arboles"] .lam-k4 { stroke-width: 1.4; }
+  [data-modulo="arboles"] .lam-k5 { stroke-width: 1.1; } [data-modulo="arboles"] .lam-k6 { stroke-width: .85; }
+  [data-modulo="arboles"] .lam-k7 { stroke-width: .7; } [data-modulo="arboles"] .lam-k8 { stroke-width: 2; }
+  [data-modulo="arboles"] .arb-corte .cr-k5, [data-modulo="arboles"] .arb-corte .cr-k6, [data-modulo="arboles"] .arb-corte .cr-k7 { stroke-width: 1; }
+}

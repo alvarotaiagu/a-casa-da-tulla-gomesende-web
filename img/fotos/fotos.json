@@ -1,0 +1,341 @@
+[
+ {
+  "nombre": "dia",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280,
+   1613
+  ],
+  "ancho": 1613,
+  "alto": 1080,
+  "origen": "fotos/web/exterior-6.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "ocaso-casa",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1264
+  ],
+  "ancho": 1264,
+  "alto": 1080,
+  "origen": "fotos/web/A-casa-da-Tulla_12.jpg",
+  "recorte": {
+   "left": 356,
+   "top": 0,
+   "width": 1264,
+   "height": 1080
+  }
+ },
+ {
+  "nombre": "ocaso-valle",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280
+  ],
+  "ancho": 1280,
+  "alto": 960,
+  "origen": "fotos/escapadarural/er-13-508d9c748db1d.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "noche",
+  "anchos": [
+   480,
+   800,
+   1024
+  ],
+  "ancho": 1024,
+  "alto": 686,
+  "origen": "fotos/web/noche-800x600-1.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "noche-piscina",
+  "anchos": [
+   480,
+   720
+  ],
+  "ancho": 720,
+  "alto": 480,
+  "origen": "fotos/escapadarural/er-20-5addd78604dbe.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "casa-reflejo",
+  "anchos": [
+   480,
+   720
+  ],
+  "ancho": 720,
+  "alto": 540,
+  "origen": "fotos/escapadarural/er-01-5addd6c28eddd.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "piscina",
+  "anchos": [
+   480,
+   800,
+   1024
+  ],
+  "ancho": 1024,
+  "alto": 684,
+  "origen": "fotos/web/exterior-800x600-1.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "vistas",
+  "anchos": [
+   480,
+   800,
+   971
+  ],
+  "ancho": 971,
+  "alto": 648,
+  "origen": "fotos/web/A-CASA-DA-TULLA-OURENSE-mascota.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "asador",
+  "anchos": [
+   480,
+   800,
+   1024
+  ],
+  "ancho": 1024,
+  "alto": 768,
+  "origen": "fotos/web/asador.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "asador-sepia",
+  "anchos": [
+   480,
+   800,
+   1024
+  ],
+  "ancho": 1024,
+  "alto": 768,
+  "origen": "fotos/web/cenador-2.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "porche",
+  "anchos": [
+   400
+  ],
+  "ancho": 400,
+  "alto": 600,
+  "origen": "fotos/escapadarural/er-05-508d7fa87b36f.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "jardin",
+  "anchos": [
+   450
+  ],
+  "ancho": 450,
+  "alto": 600,
+  "origen": "fotos/escapadarural/er-12-508d9c49030a8.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "tumbonas",
+  "anchos": [
+   480,
+   720
+  ],
+  "ancho": 720,
+  "alto": 1080,
+  "origen": "fotos/escapadarural/er-26-5adde06299f46.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "entrada",
+  "anchos": [
+   480,
+   800,
+   1024
+  ],
+  "ancho": 1024,
+  "alto": 682,
+  "origen": "fotos/web/exterior-2-800x600-1.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "pila",
+  "anchos": [
+   480,
+   720
+  ],
+  "ancho": 720,
+  "alto": 1080,
+  "origen": "fotos/escapadarural/er-28-5adde0772c689.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "salon",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280,
+   1600
+  ],
+  "ancho": 1600,
+  "alto": 1066,
+  "origen": "fotos/escapadarural/er-03-508d9b9348211.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "salon-2",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 534,
+  "origen": "fotos/escapadarural/er-07-508d80aa97f1d.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "salon-3",
+  "anchos": [
+   480,
+   720
+  ],
+  "ancho": 720,
+  "alto": 480,
+  "origen": "fotos/escapadarural/er-24-5addd7ed326de.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "cocina",
+  "anchos": [
+   480,
+   800,
+   1024
+  ],
+  "ancho": 1024,
+  "alto": 768,
+  "origen": "fotos/web/cocina-1.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "bano",
+  "anchos": [
+   400
+  ],
+  "ancho": 400,
+  "alto": 600,
+  "origen": "fotos/escapadarural/er-08-508d80cf32768.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "hab-castineiro",
+  "anchos": [
+   480,
+   800,
+   1024
+  ],
+  "ancho": 1024,
+  "alto": 684,
+  "origen": "fotos/web/castineiro-800x600-1.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "hab-figueira",
+  "anchos": [
+   480,
+   800,
+   1024
+  ],
+  "ancho": 1024,
+  "alto": 684,
+  "origen": "fotos/web/figeira-800x600-1.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "hab-naranja",
+  "anchos": [
+   480,
+   720
+  ],
+  "ancho": 720,
+  "alto": 480,
+  "origen": "fotos/escapadarural/er-02-5addd6ee71e4f.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "hab-roja",
+  "anchos": [
+   480,
+   720
+  ],
+  "ancho": 720,
+  "alto": 480,
+  "origen": "fotos/escapadarural/er-17-5addd740161eb.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "hab-roja-2",
+  "anchos": [
+   480,
+   720
+  ],
+  "ancho": 720,
+  "alto": 1080,
+  "origen": "fotos/escapadarural/er-27-5adde07518a96.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "hab-roja-3",
+  "anchos": [
+   480,
+   720
+  ],
+  "ancho": 720,
+  "alto": 1080,
+  "origen": "fotos/escapadarural/er-25-5adde05fa343e.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "iglesia",
+  "anchos": [
+   480,
+   800,
+   1024
+  ],
+  "ancho": 1024,
+  "alto": 768,
+  "origen": "fotos/web/entorno-2.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "otono",
+  "anchos": [
+   450
+  ],
+  "ancho": 450,
+  "alto": 600,
+  "origen": "fotos/escapadarural/er-09-508d9bd9a0b9f.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "ovejas",
+  "anchos": [
+   450
+  ],
+  "ancho": 450,
+  "alto": 600,
+  "origen": "fotos/escapadarural/er-10-508d9bf31a299.jpg",
+  "recorte": null
+ }
+]

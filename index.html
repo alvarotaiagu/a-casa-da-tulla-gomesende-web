@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Casa da Tulla · casa de granito de 1637 en Gomesende, Ourense</title>
+<meta name="description" content="Casa de granito de 1637, rehabilitada en 2008, que se alquila entera: hasta nueve personas, cuatro dormitorios dobles con baño, piscina mirando al valle y asador con horno de leña. Gomesende, Ourense.">
+<meta property="og:title" content="A Casa da Tulla · la casa que guardaba el grano">
+<meta property="og:description" content="Casa entera de 1637 para nueve personas, con piscina y asador, en la aldea de Gomesende (Ourense).">
+<link rel="preload" as="image" type="image/avif" imagesrcset="img/fotos/ocaso-casa-480.avif 480w, img/fotos/ocaso-casa-800.avif 800w, img/fotos/ocaso-casa-1024.avif 1024w, img/fotos/ocaso-casa-1264.avif 1264w" imagesizes="(max-width: 899px) 100vw, 54vw" fetchpriority="high">
+<!-- script bloqueante: clases antes del primer pintado y el puente con la cortina (js/grano.js) -->
+<script>
+(function (d) {
+  var h = d.documentElement;
+  h.classList.add('js');
+  // MANDO DE MAQUETA (no viaja al cliente): solo con ?revision
+  try {
+    var q = new URLSearchParams(location.search);
+    if (q.has('revision')) {
+      h.classList.add('revision');
+      if (q.get('densidad') === 'sobria') h.classList.add('densidad-sobria');
+    }
+  } catch (e) {}
+  // el puente con la cortina: existe desde el primer momento, cargue antes quien cargue.
+  // La cortina llama a Tulla.abrir() cuando EMPIEZA a abrirse y a Tulla.retirarCortina() al acabar
+  // (o lanza los eventos tulla:cortina-abre / tulla:cortina-fuera); la web y los módulos usan Tulla.alAbrirse(fn).
+  var T = window.Tulla = window.Tulla || {};
+  var cola = [];
+  var avisar = function (n) { try { d.dispatchEvent(new CustomEvent(n)); } catch (e) {} };
+  T.alAbrirse = function (fn) { if (T.abierta) { try { fn(); } catch (e) { console.warn(e); } } else cola.push(fn); };
+  T.abrir = function () {
+    if (T.abierta) return;
+    T.abierta = true;
+    cola.splice(0).forEach(function (fn) { try { fn(); } catch (e) { console.warn(e); } });
+    avisar('tulla:abierta');
+  };
+  T.retirarCortina = function () {
+    if (T.cortinaFuera) return;
+    T.cortinaFuera = true;
+    clearTimeout(window.__redCortina);
+    h.classList.remove('cortina-activa');
+    h.classList.add('cortina-fuera');
+    T.abrir();
+    avisar('tulla:fuera');
+  };
+  d.addEventListener('tulla:cortina-abre', function () { T.abrir(); });
+  d.addEventListener('tulla:cortina-fuera', function () { T.retirarCortina(); });
+  // red de seguridad por si main.js o grano.js no llegan: la cortina se va sola
+  window.__redCortina = setTimeout(function () { T.retirarCortina(); }, 6500);
+})(document);
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Commissioner:wght@400;500;600&family=Spline+Sans+Mono&display=swap">
+<link rel="stylesheet" href="css/estilos.css?v=1312fda1">
+<link rel="stylesheet" href="css/entrada.css?v=4395dbc8">
+<link rel="stylesheet" href="css/arboles.css?v=7f2401f7">
+<link rel="stylesheet" href="css/3d.css?v=b01ddc04">
+<link rel="icon" href="marca/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="marca/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="marca/apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2B2620">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<noscript><style>.cortina,#cortina{display:none!important}</style></noscript>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "name": "A Casa da Tulla",
+  "description": "Casa de granito de 1637, rehabilitada en 2008, que se alquila entera: hasta nueve personas, cuatro dormitorios dobles con baño (uno adaptado), salón comedor con chimenea, piscina y asador con horno de leña.",
+  "image": "img/og.jpg",
+  "telephone": "+34 616 887 944",
+  "email": "info@acasadatulla.es",
+  "address": { "@type": "PostalAddress", "streetAddress": "Gomesende, 47", "postalCode": "32212", "addressLocality": "Gomesende", "addressRegion": "Ourense", "addressCountry": "ES" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 42.1639316, "longitude": -8.105519 },
+  "numberOfRooms": 4,
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Piscina", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Barbacoa y horno de leña", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Chimenea", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Calefacción", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Dormitorio adaptado", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Garaje", "value": true }
+  ],
+  "knowsLanguage": ["es", "gl", "en", "fr"]
+}
+</script>
+</head>
+<body>
+<!-- ============ cortina «El grano» (agente Entrada: partes/cortina.html + css/entrada.css + js/grano.js) ============
+     El grano cae por el canal de piedra y forma «1637»; una pincelada lo barre y destapa la portada.
+     Este script va ANTES de la cortina: solo con JS se enseña (html.cortina-activa), así que sin JS no
+     aparece nunca. Expone Tulla.cortina = { alAbrirse(fn), alRetirarse(fn), abrir(), retirar(), abierta, fuera }
+     y lanza en document los eventos «tulla:cortina-abre» y «tulla:cortina-fuera».
+     Red de seguridad: si js/grano.js no arranca en 2,5 s, o si algo se atasca, a los 8 s se va sola. -->
+<script>
+(function (d, w) {
+  var h = d.documentElement, T = w.Tulla = w.Tulla || {}, abierta = false, fuera = false, alAbrir = [], alFuera = [];
+  h.classList.add('js');
+  function avisar(lista, nombre) {
+    lista.splice(0).forEach(function (f) { try { f(); } catch (e) { console.warn(e); } });
+    try { d.dispatchEvent(new CustomEvent(nombre)); } catch (e) {}
+  }
+  function abrir() { if (abierta) return; abierta = true; h.classList.add('cortina-abriendo'); avisar(alAbrir, 'tulla:cortina-abre'); }
+  function retirar() {
+    if (fuera) return;
+    fuera = true;
+    clearTimeout(red1); clearTimeout(red2);
+    var c = d.getElementById('cortina');
+    if (c) c.hidden = true;
+    h.classList.remove('cortina-activa', 'cortina-abriendo');
+    h.classList.add('cortina-fuera');
+    abrir();
+    avisar(alFuera, 'tulla:cortina-fuera');
+  }
+  T.cortina = {
+    alAbrirse: function (f) { if (abierta) f(); else alAbrir.push(f); },
+    alRetirarse: function (f) { if (fuera) f(); else alFuera.push(f); },
+    abrir: abrir, retirar: retirar, enMarcha: false,
+    get abierta() { return abierta; }, get fuera() { return fuera; }
+  };
+  var red1 = setTimeout(function () { if (!T.cortina.enMarcha) retirar(); }, 2500);
+  var red2 = setTimeout(retirar, 8000);
+  var quieto = false;
+  try { quieto = w.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  if (quieto) retirar(); else h.classList.add('cortina-activa');
+})(document, window);
+</script>
+<div class="cortina" id="cortina" aria-hidden="true">
+  <canvas class="cortina__lienzo"></canvas>
+  <div class="cortina__texto">
+    <p class="cortina__anno">1637</p>
+    <p class="cortina__nombre">A Casa da Tulla</p>
+    <p class="cortina__lugar">Gomesende · Ourense</p>
+  </div>
+</div>
+<noscript><style>.cortina{display:none!important}</style></noscript>
+<a class="saltar" href="#principal">Saltar al contenido</a>
+
+<!-- ============ cabecera fija: el logo real (sin redibujar), las paradas y el teléfono; sigue la luz ============ -->
+<header class="cab" id="cab">
+  <div class="cab__in">
+    <a class="marca" href="./"><img class="marca__logo" src="marca/logo-240.png" srcset="marca/logo-240.png 1x, marca/logo-480.png 2x" width="120" height="52" alt="A Casa da Tulla, a la portada"></a>
+    <nav class="cab__nav" aria-label="Principal">
+      <a href="#tulla">La tulla</a>
+      <a href="#arboles">Habitaciones</a>
+      <a href="#fuera">Fuera</a>
+      <a href="#alrededor">Alrededor</a>
+      <a href="#reservar">Reservar</a>
+    </nav>
+    <a class="cab__tel" href="tel:+34616887944"><span class="vh">Teléfono: </span>616 887 944</a>
+    <a class="btn btn--marca cab__res" href="#reservar">Ver fechas</a>
+    <button class="cab__menu" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu-movil"><span class="vh">Menú</span><i></i><i></i></button>
+  </div>
+  <div class="menu-movil" id="menu-movil" aria-hidden="true">
+    <nav aria-label="Menú">
+      <a href="#tulla"><small>1637 · el grano de Celanova</small>La tulla</a>
+      <a href="#arboles"><small>Castiñeiro, Figueira, Nogueira y Moreira</small>Habitaciones</a>
+      <a href="#fuera"><small>Piscina, asador y jardín</small>Fuera</a>
+      <a href="#alrededor"><small>Celanova, Ribadavia, Portugal</small>Alrededor</a>
+      <a href="#reservar"><small>Casa entera para nueve</small>Reservar</a>
+      <a href="#llegar"><small>Gomesende · Ourense</small>Cómo llegar</a>
+    </nav>
+    <p class="menu-movil__tel"><a href="tel:+34616887944">616 887 944</a> · <a href="tel:+34650308490">650 30 84 90</a></p>
+  </div>
+</header>
+
+<main id="principal">
+
+  <!-- ============ 1. portada: el logo pintado a pincel y la casa a la hora de ahora (módulo Pincel, js/pincel.js) ============ -->
+  <section class="portada" id="portada" data-tramo="tarde" data-luz="0" aria-labelledby="portada-tit">
+    <div class="portada__in">
+      <div class="portada__marco">
+        <div class="portada__pincel" data-modulo="pincel">
+          <picture data-foto="ocaso-casa"><source type="image/avif" srcset="img/fotos/ocaso-casa-480.avif 480w, img/fotos/ocaso-casa-800.avif 800w, img/fotos/ocaso-casa-1024.avif 1024w, img/fotos/ocaso-casa-1264.avif 1264w" sizes="(max-width: 899px) 100vw, 54vw"><source type="image/webp" srcset="img/fotos/ocaso-casa-480.webp 480w, img/fotos/ocaso-casa-800.webp 800w, img/fotos/ocaso-casa-1024.webp 1024w, img/fotos/ocaso-casa-1264.webp 1264w" sizes="(max-width: 899px) 100vw, 54vw"><img src="img/fotos/ocaso-casa-800.jpg" srcset="img/fotos/ocaso-casa-480.jpg 480w, img/fotos/ocaso-casa-800.jpg 800w, img/fotos/ocaso-casa-1024.jpg 1024w, img/fotos/ocaso-casa-1264.jpg 1264w" sizes="(max-width: 899px) 100vw, 54vw" width="1264" height="1080" alt="La casa de granito al atardecer, con la piedra encendida y su reflejo en la piscina; a la derecha, una casa vecina de piedra" fetchpriority="high" loading="eager" decoding="async"></picture>
+        </div>
+      </div>
+      <div class="portada-texto">
+        <p class="eyebrow">Casa de turismo rural · Gomesende, Ourense</p>
+        <h1 class="portada__tit" id="portada-tit"><span class="ln"><span>Una casa de granito</span></span> <span class="ln"><span>de <span class="cifra">1637</span> que guardaba</span></span> <span class="ln"><span><em>el grano</em></span></span></h1>
+        <p class="portada__baj">Casa entera para nueve <i aria-hidden="true">·</i> cuatro dormitorios con baño <i aria-hidden="true">·</i> Gomesende, Ourense</p>
+        <div class="portada__acc">
+          <a class="btn btn--marca" href="#reservar">Ver fechas</a>
+          <a class="btn btn--hueco" href="tel:+34616887944">Llamar <span class="mono">616 887 944</span></a>
+        </div>
+        <p class="portada__ahora mono" data-luz-ahora></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. «La tulla»: la palabra, lo que cuenta la casa, las cuentas de hoy y las medidas ============ -->
+  <section class="sec tulla" id="tulla" data-tramo="tarde" data-luz="0.06" aria-labelledby="tulla-tit">
+    <div class="env">
+      <header class="sec-cab">
+        <p class="eyebrow">La historia</p>
+        <h2 id="tulla-tit" data-partir>Por qué se llama <em>«A Casa da Tulla»</em></h2>
+      </header>
+
+      <div class="tulla__voz">
+        <article class="diccionario" aria-labelledby="dic-palabra">
+          <p class="diccionario__palabra" id="dic-palabra"><dfn>tulla</dfn> <span class="mono">s. f.</span></p>
+          <blockquote class="diccionario__def" lang="gl"><p>«Arca grande de madeira ou doutro material para gardar a gra ou outras cousas.»</p></blockquote>
+          <p class="diccionario__trad">Un arcón grande, de madera u otro material, para guardar el grano. En gallego se dice de ella: <q lang="gl">Está a tulla acugulada</q>, la tulla está llena hasta arriba.</p>
+          <p class="diccionario__fuente mono">Dicionario da Real Academia Galega</p>
+        </article>
+
+        <div class="tulla__cuenta">
+          <p class="tulla__entrada">La casa data de <span class="cifra">1637</span>. Cuentan que aquí se guardaba el grano de las rentas del monasterio de Celanova, y de ahí su nombre.</p>
+          <p>Así lo cuentan sus dueños, que se lo explican a quien llega. En la segunda planta se conserva un canal en la piedra por donde se subía el grano, y por la casa quedan recipientes de madera que se usaban como medidas y hoy son parte de la decoración.</p>
+          <p>En aquellos años, el monasterio benedictino de San Salvador de Celanova, fundado por San Rosendo en el siglo X, vivía siglos de gran poder económico: su iglesia barroca se empezó en 1653.</p>
+          <p>En 2008 un estudio de arquitectos la rehabilitó como casa rural, con el encargo de respetar su esencia: <q>las paredes de piedra y las estructuras de madera</q>.</p>
+          <p class="tulla__nota">Es la historia de la casa, como la cuentan ellos: no conocemos un documento que la pruebe.</p>
+        </div>
+
+        <figure class="tulla__pila">
+          <button type="button" class="foto-btn" data-visor="pila" aria-label="Ver más grande: piedra y madera junto a una ventana"><picture data-foto="pila"><source type="image/avif" srcset="img/fotos/pila-480.avif 480w, img/fotos/pila-720.avif 720w" sizes="(max-width: 699px) 60vw, 300px"><source type="image/webp" srcset="img/fotos/pila-480.webp 480w, img/fotos/pila-720.webp 720w" sizes="(max-width: 699px) 60vw, 300px"><img src="img/fotos/pila-720.jpg" srcset="img/fotos/pila-480.jpg 480w, img/fotos/pila-720.jpg 720w" sizes="(max-width: 699px) 60vw, 300px" width="720" height="1080" alt="Una ventana de madera con contraventanas en el muro de granito y, debajo, una pila de piedra con plantas" loading="lazy" decoding="async"></picture></button>
+          <figcaption>Piedra y madera, junto a una ventana de la casa.</figcaption>
+        </figure>
+      </div>
+
+      <div class="tulla__hoy">
+        <figure class="tulla__dia">
+          <button type="button" class="foto-btn" data-visor="dia" aria-label="Ver más grande: la casa a pleno día"><picture data-foto="dia"><source type="image/avif" srcset="img/fotos/dia-480.avif 480w, img/fotos/dia-800.avif 800w, img/fotos/dia-1024.avif 1024w, img/fotos/dia-1280.avif 1280w, img/fotos/dia-1613.avif 1613w" sizes="(max-width: 899px) 92vw, 50vw"><source type="image/webp" srcset="img/fotos/dia-480.webp 480w, img/fotos/dia-800.webp 800w, img/fotos/dia-1024.webp 1024w, img/fotos/dia-1280.webp 1280w, img/fotos/dia-1613.webp 1613w" sizes="(max-width: 899px) 92vw, 50vw"><img src="img/fotos/dia-800.jpg" srcset="img/fotos/dia-480.jpg 480w, img/fotos/dia-800.jpg 800w, img/fotos/dia-1024.jpg 1024w, img/fotos/dia-1280.jpg 1280w, img/fotos/dia-1613.jpg 1613w" sizes="(max-width: 899px) 92vw, 50vw" width="1613" height="1080" alt="Una esquina de la casa de granito a pleno día, con el patio enlosado, flores y el cielo azul" loading="lazy" decoding="async"></picture></button>
+          <figcaption>La casa, hoy: granito de 1637 y la rehabilitación de 2008.</figcaption>
+        </figure>
+
+        <table class="cuentas">
+          <caption><span class="cuentas__tit">Las cuentas de hoy</span><span class="mono">Datos de la casa, al día</span></caption>
+          <tbody>
+            <tr><th scope="row">La casa se levanta</th><td><span class="cifra">1637</span></td></tr>
+            <tr><th scope="row">Se rehabilita</th><td><span class="cifra">2008</span></td></tr>
+            <tr><th scope="row">La finca</th><td><span class="cifra">1.800</span> m²</td></tr>
+            <tr><th scope="row">Personas</th><td><span class="cifra">9</span></td></tr>
+            <tr><th scope="row">Dormitorios dobles</th><td><span class="cifra">4</span></td></tr>
+            <tr><th scope="row">Baños</th><td><span class="cifra">4</span></td></tr>
+          </tbody>
+          <tfoot><tr><th scope="row">Se alquila</th><td>entera</td></tr></tfoot>
+        </table>
+      </div>
+
+      <div class="medidas">
+        <p class="medidas__intro">Las medidas del grano. En Galicia, el grano no se pesaba: se medía con cajas de madera.</p>
+        <figure class="medida">
+          <svg class="medida__dibujo" viewBox="0 0 200 150" aria-hidden="true" focusable="false"><path d="M20 24h160l-18 112H38z"/><path d="M24 52h152 M30 104h140" class="medida__aro"/><path d="M64 24l-6 112 M100 24v112 M136 24l6 112" class="medida__tabla"/><path d="M8 14h40 M152 14h40" class="medida__asa"/></svg>
+          <figcaption><b>Ferrado</b>Entre 12 y 20 kg de grano, según la comarca. Era también una medida de tierra: de 400 a 600 m².<span class="mono">Real Academia Galega</span></figcaption>
+        </figure>
+        <figure class="medida medida--esca">
+          <svg class="medida__dibujo" viewBox="0 0 200 150" aria-hidden="true" focusable="false"><path d="M56 56h88l-10 80H66z"/><path d="M59 84h82 M63 116h74" class="medida__aro"/><path d="M85 56l-3 80 M115 56l3 80" class="medida__tabla"/></svg>
+          <figcaption><b>Escá</b>Una medida menor: unos 8 kg de grano.<span class="mono">Dicionário Estraviz</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ solo en la versión sobria: la casa de un vistazo ============ -->
+  <section class="sec vistazo" id="vistazo" data-tramo="tarde" aria-labelledby="vistazo-tit">
+    <div class="env">
+      <h2 class="vistazo__tit" id="vistazo-tit">A Casa da Tulla, de un vistazo</h2>
+      <table class="vistazo__tabla">
+        <tbody>
+          <tr><th scope="row">Capacidad</th><td>Hasta 9 personas; se alquila la casa entera</td></tr>
+          <tr><th scope="row">Dormitorios y camas</th><td>4 dormitorios dobles: tres con cama de matrimonio y uno con dos camas; una cama supletoria y cuna</td></tr>
+          <tr><th scope="row">Baños</th><td>4, uno en cada dormitorio</td></tr>
+          <tr><th scope="row">Adaptado</th><td>Un dormitorio adaptado para movilidad reducida</td></tr>
+          <tr><th scope="row">Piscina</th><td>Con ducha, rodeada de césped y mirando al valle</td></tr>
+          <tr><th scope="row">Asador</th><td>Edificio aparte con barbacoa, horno de leña y sala para comer a cubierto</td></tr>
+          <tr><th scope="row">Mascotas</th><td>Se admiten, avisando (por confirmar)</td></tr>
+          <tr><th scope="row">Finca</th><td>Unos 1.800 m², con jardín, huerta y garaje para dos coches</td></tr>
+          <tr><th scope="row">Distancias</th><td>Frontera con Portugal, 14 km · Celanova, 22 km · Ribadavia, 27 km · Ourense, 47 km · Vigo, 82 km · Santiago, 134 km</td></tr>
+          <tr><th scope="row">Registro</th><td>TR-OR-000096</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 3. «Cuatro árboles»: las cuatro habitaciones (módulo Árboles, js/arboles.js) ============ -->
+  <section id="arboles" class="sec arboles" data-tramo="tarde" data-luz="0.16" aria-labelledby="t-arboles">
+    <div class="env">
+      <header class="sec-cab">
+        <p class="eyebrow">Las habitaciones</p>
+        <h2 id="t-arboles" data-partir>Cuatro dormitorios, <em>cuatro árboles</em></h2>
+        <p class="sec-cab__txt">Cada dormitorio lleva el nombre de un árbol gallego y un color propio. Los cuatro son dobles y tienen su baño.</p>
+      </header>
+      <div class="modulo arboles__modulo" data-modulo="arboles">
+        <div class="modulo__respaldo arboles__respaldo">
+          <p class="arboles__cuenta mono">9 personas · 4 dormitorios dobles · 4 baños · uno adaptado · cuna</p>
+          <div class="cuartos">
+            <article class="cuarto" aria-labelledby="c-castineiro">
+              <button type="button" class="foto-btn cuarto__foto" data-visor="hab-castineiro" aria-label="Ver más grande: Castiñeiro"><picture data-foto="hab-castineiro"><source type="image/avif" srcset="img/fotos/hab-castineiro-480.avif 480w, img/fotos/hab-castineiro-800.avif 800w, img/fotos/hab-castineiro-1024.avif 1024w" sizes="(max-width: 699px) 92vw, 44vw"><source type="image/webp" srcset="img/fotos/hab-castineiro-480.webp 480w, img/fotos/hab-castineiro-800.webp 800w, img/fotos/hab-castineiro-1024.webp 1024w" sizes="(max-width: 699px) 92vw, 44vw"><img src="img/fotos/hab-castineiro-800.jpg" srcset="img/fotos/hab-castineiro-480.jpg 480w, img/fotos/hab-castineiro-800.jpg 800w, img/fotos/hab-castineiro-1024.jpg 1024w" sizes="(max-width: 699px) 92vw, 44vw" width="1024" height="684" alt="Dormitorio Castiñeiro: pared azul y muro de granito, cama de matrimonio torneada y puerta al balcón" loading="lazy" decoding="async"></picture></button>
+              <h3 id="c-castineiro">Castiñeiro <span>castaño</span></h3>
+              <p>Pared azul y muro de granito, cama de matrimonio de madera torneada y un balcón que da a la piscina.</p>
+            </article>
+            <article class="cuarto" aria-labelledby="c-figueira">
+              <button type="button" class="foto-btn cuarto__foto" data-visor="hab-figueira" aria-label="Ver más grande: Figueira"><picture data-foto="hab-figueira"><source type="image/avif" srcset="img/fotos/hab-figueira-480.avif 480w, img/fotos/hab-figueira-800.avif 800w, img/fotos/hab-figueira-1024.avif 1024w" sizes="(max-width: 699px) 92vw, 44vw"><source type="image/webp" srcset="img/fotos/hab-figueira-480.webp 480w, img/fotos/hab-figueira-800.webp 800w, img/fotos/hab-figueira-1024.webp 1024w" sizes="(max-width: 699px) 92vw, 44vw"><img src="img/fotos/hab-figueira-800.jpg" srcset="img/fotos/hab-figueira-480.jpg 480w, img/fotos/hab-figueira-800.jpg 800w, img/fotos/hab-figueira-1024.jpg 1024w" sizes="(max-width: 699px) 92vw, 44vw" width="1024" height="684" alt="Dormitorio Figueira: muro de granito y pared rosa, armario de madera y cama de matrimonio" loading="lazy" decoding="async"></picture></button>
+              <h3 id="c-figueira">Figueira <span>higuera</span></h3>
+              <p>Granito y una pared rosa, armario de madera, cama de matrimonio y salida a una terraza.</p>
+            </article>
+            <article class="cuarto" aria-labelledby="c-nogueira" data-asignacion="supuesto">
+              <button type="button" class="foto-btn cuarto__foto" data-visor="hab-naranja" aria-label="Ver más grande: Nogueira"><picture data-foto="hab-naranja"><source type="image/avif" srcset="img/fotos/hab-naranja-480.avif 480w, img/fotos/hab-naranja-720.avif 720w" sizes="(max-width: 699px) 92vw, 44vw"><source type="image/webp" srcset="img/fotos/hab-naranja-480.webp 480w, img/fotos/hab-naranja-720.webp 720w" sizes="(max-width: 699px) 92vw, 44vw"><img src="img/fotos/hab-naranja-720.jpg" srcset="img/fotos/hab-naranja-480.jpg 480w, img/fotos/hab-naranja-720.jpg 720w" sizes="(max-width: 699px) 92vw, 44vw" width="720" height="480" alt="Dormitorio de pared naranja, vigas de madera, cama de matrimonio y ventana al monte" loading="lazy" decoding="async"></picture></button>
+              <h3 id="c-nogueira">Nogueira <span>nogal</span></h3>
+              <p>Pared naranja, vigas de madera, cama de matrimonio y una ventana que mira al monte.</p>
+            </article>
+            <article class="cuarto" aria-labelledby="c-moreira" data-asignacion="supuesto">
+              <button type="button" class="foto-btn cuarto__foto" data-visor="hab-roja" aria-label="Ver más grande: Moreira"><picture data-foto="hab-roja"><source type="image/avif" srcset="img/fotos/hab-roja-480.avif 480w, img/fotos/hab-roja-720.avif 720w" sizes="(max-width: 699px) 92vw, 44vw"><source type="image/webp" srcset="img/fotos/hab-roja-480.webp 480w, img/fotos/hab-roja-720.webp 720w" sizes="(max-width: 699px) 92vw, 44vw"><img src="img/fotos/hab-roja-720.jpg" srcset="img/fotos/hab-roja-480.jpg 480w, img/fotos/hab-roja-720.jpg 720w" sizes="(max-width: 699px) 92vw, 44vw" width="720" height="480" alt="Dormitorio de pared roja con dos camas de cabecero tallado y una ventana con contraventanas" loading="lazy" decoding="async"></picture></button>
+              <h3 id="c-moreira">Moreira <span>moral</span></h3>
+              <p>Pared roja, vigas, dos camas de cabecero tallado, un tocador de madera y contraventanas.</p>
+              <div class="cuarto__mas">
+                <button type="button" class="foto-btn" data-visor="hab-roja-2" aria-label="Ver más grande: las dos camas y la ventana"><picture data-foto="hab-roja-2"><source type="image/avif" srcset="img/fotos/hab-roja-2-480.avif 480w, img/fotos/hab-roja-2-720.avif 720w" sizes="120px"><source type="image/webp" srcset="img/fotos/hab-roja-2-480.webp 480w, img/fotos/hab-roja-2-720.webp 720w" sizes="120px"><img src="img/fotos/hab-roja-2-720.jpg" srcset="img/fotos/hab-roja-2-480.jpg 480w, img/fotos/hab-roja-2-720.jpg 720w" sizes="120px" width="720" height="1080" alt="Las dos camas y la ventana con contraventanas" loading="lazy" decoding="async"></picture></button>
+                <button type="button" class="foto-btn" data-visor="hab-roja-3" aria-label="Ver más grande: el tocador de madera"><picture data-foto="hab-roja-3"><source type="image/avif" srcset="img/fotos/hab-roja-3-480.avif 480w, img/fotos/hab-roja-3-720.avif 720w" sizes="120px"><source type="image/webp" srcset="img/fotos/hab-roja-3-480.webp 480w, img/fotos/hab-roja-3-720.webp 720w" sizes="120px"><img src="img/fotos/hab-roja-3-720.jpg" srcset="img/fotos/hab-roja-3-480.jpg 480w, img/fotos/hab-roja-3-720.jpg 720w" sizes="120px" width="720" height="1080" alt="El tocador de madera con espejo, junto a la ventana y un arcón" loading="lazy" decoding="async"></picture></button>
+              </div>
+            </article>
+          </div>
+          <p class="arboles__acc"><a class="btn btn--marca" href="#reservar">Ver fechas</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. la casa por dentro ============ -->
+  <section id="dentro" class="sec dentro" data-tramo="tarde" data-luz="0.3" aria-labelledby="dentro-tit">
+    <div class="env">
+      <header class="sec-cab">
+        <p class="eyebrow">La casa por dentro</p>
+        <h2 id="dentro-tit" data-partir>Granito, vigas <em>y una chimenea</em></h2>
+        <p class="sec-cab__txt">En la planta baja, una cocina equipada y un gran salón comedor con chimenea, para las comidas en familia. Muros de piedra, techos de madera y una escalera de madera.</p>
+      </header>
+      <div class="dentro__rejilla">
+        <figure class="dentro__f dentro__f--salon">
+          <button type="button" class="foto-btn velo" data-visor="salon" aria-label="Ver más grande: el salón comedor"><picture data-foto="salon"><source type="image/avif" srcset="img/fotos/salon-480.avif 480w, img/fotos/salon-800.avif 800w, img/fotos/salon-1024.avif 1024w, img/fotos/salon-1280.avif 1280w, img/fotos/salon-1600.avif 1600w" sizes="(max-width: 699px) 92vw, 62vw"><source type="image/webp" srcset="img/fotos/salon-480.webp 480w, img/fotos/salon-800.webp 800w, img/fotos/salon-1024.webp 1024w, img/fotos/salon-1280.webp 1280w, img/fotos/salon-1600.webp 1600w" sizes="(max-width: 699px) 92vw, 62vw"><img src="img/fotos/salon-800.jpg" srcset="img/fotos/salon-480.jpg 480w, img/fotos/salon-800.jpg 800w, img/fotos/salon-1024.jpg 1024w, img/fotos/salon-1280.jpg 1280w, img/fotos/salon-1600.jpg 1600w" sizes="(max-width: 699px) 92vw, 62vw" width="1600" height="1066" alt="El salón comedor: muros de granito, vigas, dos lámparas naranjas, sofá, la chimenea negra de esquina, la mesa y la escalera de madera" loading="lazy" decoding="async"></picture></button>
+          <figcaption><b>El salón comedor</b>Granito, vigas, la chimenea de esquina y la mesa grande.</figcaption>
+        </figure>
+        <figure class="dentro__f dentro__f--salon2">
+          <button type="button" class="foto-btn" data-visor="salon-2" aria-label="Ver más grande: el salón desde el otro lado"><picture data-foto="salon-2"><source type="image/avif" srcset="img/fotos/salon-2-480.avif 480w, img/fotos/salon-2-800.avif 800w" sizes="(max-width: 699px) 92vw, 30vw"><source type="image/webp" srcset="img/fotos/salon-2-480.webp 480w, img/fotos/salon-2-800.webp 800w" sizes="(max-width: 699px) 92vw, 30vw"><img src="img/fotos/salon-2-800.jpg" srcset="img/fotos/salon-2-480.jpg 480w, img/fotos/salon-2-800.jpg 800w" sizes="(max-width: 699px) 92vw, 30vw" width="800" height="534" alt="El salón desde el otro lado: la chimenea, el sofá, el comedor y la puerta al jardín" loading="lazy" decoding="async"></picture></button>
+          <figcaption><b>Del sofá a la mesa</b>Y la puerta al jardín.</figcaption>
+        </figure>
+        <figure class="dentro__f dentro__f--cocina">
+          <button type="button" class="foto-btn" data-visor="cocina" aria-label="Ver más grande: la cocina"><picture data-foto="cocina"><source type="image/avif" srcset="img/fotos/cocina-480.avif 480w, img/fotos/cocina-800.avif 800w, img/fotos/cocina-1024.avif 1024w" sizes="(max-width: 699px) 92vw, 34vw"><source type="image/webp" srcset="img/fotos/cocina-480.webp 480w, img/fotos/cocina-800.webp 800w, img/fotos/cocina-1024.webp 1024w" sizes="(max-width: 699px) 92vw, 34vw"><img src="img/fotos/cocina-800.jpg" srcset="img/fotos/cocina-480.jpg 480w, img/fotos/cocina-800.jpg 800w, img/fotos/cocina-1024.jpg 1024w" sizes="(max-width: 699px) 92vw, 34vw" width="1024" height="768" alt="La cocina: muebles azul oscuro, pared naranja, horno, nevera y una mesa de madera con seis sillas" loading="lazy" decoding="async"></picture></button>
+          <figcaption><b>La cocina</b>Con lavavajillas, microondas y una mesa para seis. «La cocina es un buen punto de encuentro para charlar», escribió Saúl.</figcaption>
+        </figure>
+        <figure class="dentro__f dentro__f--salon3">
+          <button type="button" class="foto-btn" data-visor="salon-3" aria-label="Ver más grande: el rincón de la chimenea"><picture data-foto="salon-3"><source type="image/avif" srcset="img/fotos/salon-3-480.avif 480w, img/fotos/salon-3-720.avif 720w" sizes="(max-width: 699px) 92vw, 26vw"><source type="image/webp" srcset="img/fotos/salon-3-480.webp 480w, img/fotos/salon-3-720.webp 720w" sizes="(max-width: 699px) 92vw, 26vw"><img src="img/fotos/salon-3-720.jpg" srcset="img/fotos/salon-3-480.jpg 480w, img/fotos/salon-3-720.jpg 720w" sizes="(max-width: 699px) 92vw, 26vw" width="720" height="480" alt="El rincón de la chimenea: sofá, chimenea negra, lámpara roja y la escalera" loading="lazy" decoding="async"></picture></button>
+          <figcaption><b>Junto a la chimenea</b>Además, calefacción en toda la casa.</figcaption>
+        </figure>
+        <figure class="dentro__f dentro__f--bano">
+          <button type="button" class="foto-btn" data-visor="bano" aria-label="Ver más grande: un baño"><picture data-foto="bano"><source type="image/avif" srcset="img/fotos/bano-400.avif 400w" sizes="(max-width: 699px) 60vw, 18vw"><source type="image/webp" srcset="img/fotos/bano-400.webp 400w" sizes="(max-width: 699px) 60vw, 18vw"><img src="img/fotos/bano-400.jpg" srcset="img/fotos/bano-400.jpg 400w" sizes="(max-width: 699px) 60vw, 18vw" width="400" height="600" alt="Un baño: lavabo blanco sobre encimera, azulejo blanco, espejo de marco negro y muro de granito" loading="lazy" decoding="async"></picture></button>
+          <figcaption><b>Cuatro baños</b>Uno en cada dormitorio.</figcaption>
+        </figure>
+      </div>
+      <p class="dentro__lista"><span>Calefacción</span><span>Chimenea</span><span>Sala de juegos</span><span>Lavadora</span><span>Lavavajillas</span><span>Microondas</span><span>Televisión</span><span>Cuna</span></p>
+    </div>
+  </section>
+
+  <!-- ============ 5. fuera: la piscina mirando al valle, el asador y el jardín (empieza el ocaso) ============ -->
+  <section id="fuera" class="sec fuera" data-tramo="ocaso" data-luz="0.42" aria-labelledby="fuera-tit">
+    <div class="env">
+      <header class="sec-cab">
+        <p class="eyebrow">Fuera</p>
+        <h2 id="fuera-tit" data-partir>Unos 1.800 m² <em>mirando al valle</em></h2>
+        <p class="sec-cab__txt">Detrás de la casa, la piscina con ducha, rodeada de césped y con el valle delante. Aparte, el asador: un edificio rojo con barbacoa, horno de leña y una sala para comer a cubierto. Y un porche a la entrada, el jardín, la huerta y garaje para dos coches.</p>
+      </header>
+      <div class="fuera__rejilla">
+        <figure class="fuera__f fuera__f--piscina">
+          <button type="button" class="foto-btn" data-visor="piscina" aria-label="Ver más grande: la piscina"><picture data-foto="piscina"><source type="image/avif" srcset="img/fotos/piscina-480.avif 480w, img/fotos/piscina-800.avif 800w, img/fotos/piscina-1024.avif 1024w" sizes="(max-width: 699px) 92vw, 58vw"><source type="image/webp" srcset="img/fotos/piscina-480.webp 480w, img/fotos/piscina-800.webp 800w, img/fotos/piscina-1024.webp 1024w" sizes="(max-width: 699px) 92vw, 58vw"><img src="img/fotos/piscina-800.jpg" srcset="img/fotos/piscina-480.jpg 480w, img/fotos/piscina-800.jpg 800w, img/fotos/piscina-1024.jpg 1024w" sizes="(max-width: 699px) 92vw, 58vw" width="1024" height="684" alt="La piscina con su escalera de obra, el césped, la casa de granito y el segundo edificio de piedra bajo un cielo con nubes" loading="lazy" decoding="async"></picture></button>
+          <figcaption><b>La piscina</b>Con ducha y césped alrededor. «Super linda, la piscina excelente», Valeria.</figcaption>
+        </figure>
+        <figure class="fuera__f fuera__f--vistas">
+          <button type="button" class="foto-btn" data-visor="vistas" aria-label="Ver más grande: el valle desde la piscina"><picture data-foto="vistas"><source type="image/avif" srcset="img/fotos/vistas-480.avif 480w, img/fotos/vistas-800.avif 800w, img/fotos/vistas-971.avif 971w" sizes="(max-width: 699px) 92vw, 34vw"><source type="image/webp" srcset="img/fotos/vistas-480.webp 480w, img/fotos/vistas-800.webp 800w, img/fotos/vistas-971.webp 971w" sizes="(max-width: 699px) 92vw, 34vw"><img src="img/fotos/vistas-800.jpg" srcset="img/fotos/vistas-480.jpg 480w, img/fotos/vistas-800.jpg 800w, img/fotos/vistas-971.jpg 971w" sizes="(max-width: 699px) 92vw, 34vw" width="971" height="648" alt="Desde el borde de la piscina hacia el valle: la barandilla, la huerta y el monte" loading="lazy" decoding="async"></picture></button>
+          <figcaption><b>Delante, el valle</b>La huerta, el monte y la barandilla al bajar.</figcaption>
+        </figure>
+        <figure class="fuera__f fuera__f--asador">
+          <button type="button" class="foto-btn" data-visor="asador" aria-label="Ver más grande: el asador"><picture data-foto="asador"><source type="image/avif" srcset="img/fotos/asador-480.avif 480w, img/fotos/asador-800.avif 800w, img/fotos/asador-1024.avif 1024w" sizes="(max-width: 699px) 92vw, 40vw"><source type="image/webp" srcset="img/fotos/asador-480.webp 480w, img/fotos/asador-800.webp 800w, img/fotos/asador-1024.webp 1024w" sizes="(max-width: 699px) 92vw, 40vw"><img src="img/fotos/asador-800.jpg" srcset="img/fotos/asador-480.jpg 480w, img/fotos/asador-800.jpg 800w, img/fotos/asador-1024.jpg 1024w" sizes="(max-width: 699px) 92vw, 40vw" width="1024" height="768" alt="El asador: un edificio bajo pintado de rojo con tejado de teja, un árbol joven y la piscina delante" loading="lazy" decoding="async"></picture></button>
+          <figcaption><b>El asador</b>Barbacoa, horno de leña y una sala con mesas.</figcaption>
+        </figure>
+        <blockquote class="fuera__cita">
+          <p>«Un parrillero espectacular, que además de la parrilla tiene un horno a leña.»</p>
+          <footer><b>Ppm</b> <span class="mono">Noviembre de 2021 · Escapada Rural</span></footer>
+        </blockquote>
+        <figure class="fuera__f fuera__f--porche">
+          <button type="button" class="foto-btn" data-visor="porche" aria-label="Ver más grande: el porche"><picture data-foto="porche"><source type="image/avif" srcset="img/fotos/porche-400.avif 400w" sizes="(max-width: 699px) 60vw, 22vw"><source type="image/webp" srcset="img/fotos/porche-400.webp 400w" sizes="(max-width: 699px) 60vw, 22vw"><img src="img/fotos/porche-400.jpg" srcset="img/fotos/porche-400.jpg 400w" sizes="(max-width: 699px) 60vw, 22vw" width="400" height="600" alt="El porche de la entrada: sillones de mimbre y una mesa redonda con velas, y al fondo el césped y la piscina" loading="lazy" decoding="async"></picture></button>
+          <figcaption><b>El porche</b>Sillones de mimbre a la entrada.</figcaption>
+        </figure>
+        <figure class="fuera__f fuera__f--jardin">
+          <button type="button" class="foto-btn" data-visor="jardin" aria-label="Ver más grande: el jardín"><picture data-foto="jardin"><source type="image/avif" srcset="img/fotos/jardin-450.avif 450w" sizes="(max-width: 699px) 60vw, 22vw"><source type="image/webp" srcset="img/fotos/jardin-450.webp 450w" sizes="(max-width: 699px) 60vw, 22vw"><img src="img/fotos/jardin-450.jpg" srcset="img/fotos/jardin-450.jpg 450w" sizes="(max-width: 699px) 60vw, 22vw" width="450" height="600" alt="Un macizo de flores, lavanda y tagetes, junto al enlosado; al fondo, el asador rojo" loading="lazy" decoding="async"></picture></button>
+          <figcaption><b>El jardín</b>Lavanda y flores junto al enlosado.</figcaption>
+        </figure>
+        <figure class="fuera__f fuera__f--tumbonas">
+          <button type="button" class="foto-btn" data-visor="tumbonas" aria-label="Ver más grande: el patio"><picture data-foto="tumbonas"><source type="image/avif" srcset="img/fotos/tumbonas-480.avif 480w, img/fotos/tumbonas-720.avif 720w" sizes="(max-width: 699px) 60vw, 22vw"><source type="image/webp" srcset="img/fotos/tumbonas-480.webp 480w, img/fotos/tumbonas-720.webp 720w" sizes="(max-width: 699px) 60vw, 22vw"><img src="img/fotos/tumbonas-720.jpg" srcset="img/fotos/tumbonas-480.jpg 480w, img/fotos/tumbonas-720.jpg 720w" sizes="(max-width: 699px) 60vw, 22vw" width="720" height="1080" alt="El lateral de granito de la casa con dos tumbonas de lona en el patio" loading="lazy" decoding="async"></picture></button>
+          <figcaption><b>El patio</b>Al lado de la casa.</figcaption>
+        </figure>
+        <figure class="fuera__f fuera__f--entrada">
+          <button type="button" class="foto-btn" data-visor="entrada" aria-label="Ver más grande: la entrada"><picture data-foto="entrada"><source type="image/avif" srcset="img/fotos/entrada-480.avif 480w, img/fotos/entrada-800.avif 800w, img/fotos/entrada-1024.avif 1024w" sizes="(max-width: 699px) 92vw, 30vw"><source type="image/webp" srcset="img/fotos/entrada-480.webp 480w, img/fotos/entrada-800.webp 800w, img/fotos/entrada-1024.webp 1024w" sizes="(max-width: 699px) 92vw, 30vw"><img src="img/fotos/entrada-800.jpg" srcset="img/fotos/entrada-480.jpg 480w, img/fotos/entrada-800.jpg 800w, img/fotos/entrada-1024.jpg 1024w" sizes="(max-width: 699px) 92vw, 30vw" width="1024" height="682" alt="El lateral de granito con la rampa y la verja; al fondo, el asador rojo" loading="lazy" decoding="async"></picture></button>
+          <figcaption><b>La entrada</b>Con rampa junto a la casa.</figcaption>
+        </figure>
+      </div>
+
+      <div class="ocaso">
+        <figure class="ocaso__f ocaso__f--valle">
+          <button type="button" class="foto-btn" data-visor="ocaso-valle" aria-label="Ver más grande: el atardecer sobre el valle"><picture data-foto="ocaso-valle"><source type="image/avif" srcset="img/fotos/ocaso-valle-480.avif 480w, img/fotos/ocaso-valle-800.avif 800w, img/fotos/ocaso-valle-1024.avif 1024w, img/fotos/ocaso-valle-1280.avif 1280w" sizes="(max-width: 699px) 92vw, 56vw"><source type="image/webp" srcset="img/fotos/ocaso-valle-480.webp 480w, img/fotos/ocaso-valle-800.webp 800w, img/fotos/ocaso-valle-1024.webp 1024w, img/fotos/ocaso-valle-1280.webp 1280w" sizes="(max-width: 699px) 92vw, 56vw"><img src="img/fotos/ocaso-valle-800.jpg" srcset="img/fotos/ocaso-valle-480.jpg 480w, img/fotos/ocaso-valle-800.jpg 800w, img/fotos/ocaso-valle-1024.jpg 1024w, img/fotos/ocaso-valle-1280.jpg 1280w" sizes="(max-width: 699px) 92vw, 56vw" width="1280" height="960" alt="El atardecer sobre el valle, con un muro de granito de la casa a la izquierda y la lámina de la piscina" loading="lazy" decoding="async"></picture></button>
+        </figure>
+        <div class="ocaso__txt">
+          <p class="ocaso__frase">«El atardecer es expectacular. […] Si buscas tranquilidad es tu lugar.»</p>
+          <p class="ocaso__quien"><b>Miguel</b> <span class="mono">Julio de 2023 · Google</span></p>
+          <figure class="ocaso__f ocaso__f--reflejo">
+            <button type="button" class="foto-btn" data-visor="casa-reflejo" aria-label="Ver más grande: la casa reflejada en la piscina"><picture data-foto="casa-reflejo"><source type="image/avif" srcset="img/fotos/casa-reflejo-480.avif 480w, img/fotos/casa-reflejo-720.avif 720w" sizes="(max-width: 699px) 92vw, 30vw"><source type="image/webp" srcset="img/fotos/casa-reflejo-480.webp 480w, img/fotos/casa-reflejo-720.webp 720w" sizes="(max-width: 699px) 92vw, 30vw"><img src="img/fotos/casa-reflejo-720.jpg" srcset="img/fotos/casa-reflejo-480.jpg 480w, img/fotos/casa-reflejo-720.jpg 720w" sizes="(max-width: 699px) 92vw, 30vw" width="720" height="540" alt="La fachada con la pérgola al atardecer, reflejada entera en la piscina bajo un cielo rosado" loading="lazy" decoding="async"></picture></button>
+            <figcaption>La misma casa, en el agua.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. «La ruta del grano»: de la casa a Celanova en 3D (módulo Ruta, js/3d/) ============ -->
+  <section id="ruta" class="ruta" data-tramo="noche" data-luz-cruce="1" aria-labelledby="t-ruta">
+    <div class="env ruta__cab">
+      <p class="eyebrow">La ruta del grano</p>
+      <h2 id="t-ruta" data-partir>De la tulla <em>a Celanova</em></h2>
+      <p class="sec-cab__txt">El camino de hoy por carretera, de la casa al monasterio de San Salvador de Celanova. El de 1637 no lo conocemos.</p>
+    </div>
+    <div class="ruta__modulo" data-modulo="ruta">
+      <div class="modulo__respaldo ruta__respaldo">
+        <picture><source type="image/webp" srcset="img/terreno/plano.webp"><img class="ruta__plano" src="img/terreno/plano.jpg" width="1800" height="852" alt="El camino de hoy por carretera de A Casa da Tulla, en Gomesende, al monasterio de San Salvador de Celanova, en dorado sobre el relieve y la foto aérea: sube al norte y va hacia el este, unos 22 km." loading="lazy" decoding="async"></picture>
+        <ul class="ruta__lista">
+          <li><b>Monasterio de San Salvador de Celanova</b><span class="mono">22 km por carretera</span></li>
+          <li><b>Frontera con Portugal</b><span class="mono">14 km</span></li>
+          <li><b>Termas de Prexigueiro</b><span class="mono">23 km</span></li>
+          <li><b>Melgaço</b><span class="mono">24 km</span></li>
+          <li><b>Ribadavia</b><span class="mono">27 km</span></li>
+        </ul>
+        <p class="ruta__fuente">Relieve y ortofoto: Instituto Geográfico Nacional (CC BY 4.0). Rutas: OpenStreetMap.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. alrededor (ya es de noche) ============ -->
+  <section id="alrededor" class="sec alrededor" data-tramo="noche" data-luz="0.72" aria-labelledby="alrededor-tit">
+    <div class="env">
+      <header class="sec-cab">
+        <p class="eyebrow">Alrededor</p>
+        <h2 id="alrededor-tit" data-partir>Entre Celanova <em>y Portugal</em></h2>
+        <p class="sec-cab__txt">Gomesende está en la Terra de Celanova, donde se juntan los ríos Arnoia y Deva, a un paso de la raya. Los dueños tienen rutas de senderismo preparadas para quien las pida.</p>
+      </header>
+      <div class="alrededor__in">
+        <ol class="camino">
+          <li><span class="camino__d mono">14 km</span><div><h3>La frontera</h3><p>El puente de Ponte Barxas, entre Padrenda y São Gregório.</p></div></li>
+          <li><span class="camino__d mono">19 km</span><div><h3>Balneario de Arnoia</h3><p>Aguas termales junto al río.</p></div></li>
+          <li><span class="camino__d mono">22 km</span><div><h3>Celanova</h3><p>El monasterio de San Salvador, fundado en el siglo X por San Rosendo; hoy acoge el concello. Con la capilla prerrománica de San Miguel.</p></div></li>
+          <li><span class="camino__d mono">23 km</span><div><h3>Termas de Prexigueiro</h3><p>Pozas de agua termal al aire libre.</p></div></li>
+          <li><span class="camino__d mono">24 km</span><div><h3>Melgaço</h3><p>La villa portuguesa y, a 27 km, Melgaço Radical: tirolina, escalada y kayak.</p></div></li>
+          <li><span class="camino__d mono">27 km</span><div><h3>Ribadavia</h3><p>En el centro del Ribeiro, la tierra del vino.</p></div></li>
+          <li class="camino__ciudades"><span class="camino__d mono">en coche</span><div><h3>Las ciudades</h3>
+            <ul class="ciudades"><li><b>Ourense</b><span class="mono">47 km</span></li><li><b>Vigo</b><span class="mono">82 km</span></li><li><b>Santiago</b><span class="mono">134 km</span></li></ul></div></li>
+        </ol>
+        <div class="alrededor__lado">
+          <figure class="alrededor__f alrededor__f--iglesia">
+            <button type="button" class="foto-btn" data-visor="iglesia" aria-label="Ver más grande: la iglesia de la aldea"><picture data-foto="iglesia"><source type="image/avif" srcset="img/fotos/iglesia-480.avif 480w, img/fotos/iglesia-800.avif 800w, img/fotos/iglesia-1024.avif 1024w" sizes="(max-width: 899px) 92vw, 36vw"><source type="image/webp" srcset="img/fotos/iglesia-480.webp 480w, img/fotos/iglesia-800.webp 800w, img/fotos/iglesia-1024.webp 1024w" sizes="(max-width: 899px) 92vw, 36vw"><img src="img/fotos/iglesia-800.jpg" srcset="img/fotos/iglesia-480.jpg 480w, img/fotos/iglesia-800.jpg 800w, img/fotos/iglesia-1024.jpg 1024w" sizes="(max-width: 899px) 92vw, 36vw" width="1024" height="768" alt="La iglesia barroca de la aldea, con su torre, entre prados y con el monte al fondo" loading="lazy" decoding="async"></picture></button>
+            <figcaption><b>La aldea</b>La iglesia de Gomesende, entre prados.</figcaption>
+          </figure>
+          <div class="alrededor__pareja">
+            <figure class="alrededor__f">
+              <button type="button" class="foto-btn" data-visor="otono" aria-label="Ver más grande: el bosque en otoño"><picture data-foto="otono"><source type="image/avif" srcset="img/fotos/otono-450.avif 450w" sizes="(max-width: 899px) 44vw, 17vw"><source type="image/webp" srcset="img/fotos/otono-450.webp 450w" sizes="(max-width: 899px) 44vw, 17vw"><img src="img/fotos/otono-450.jpg" srcset="img/fotos/otono-450.jpg 450w" sizes="(max-width: 899px) 44vw, 17vw" width="450" height="600" alt="Un bosque en otoño con el suelo cubierto de hojas y unas setas" loading="lazy" decoding="async"></picture></button>
+              <figcaption>El monte en otoño.</figcaption>
+            </figure>
+            <figure class="alrededor__f">
+              <button type="button" class="foto-btn" data-visor="ovejas" aria-label="Ver más grande: ovejas junto a un muro"><picture data-foto="ovejas"><source type="image/avif" srcset="img/fotos/ovejas-450.avif 450w" sizes="(max-width: 899px) 44vw, 17vw"><source type="image/webp" srcset="img/fotos/ovejas-450.webp 450w" sizes="(max-width: 899px) 44vw, 17vw"><img src="img/fotos/ovejas-450.jpg" srcset="img/fotos/ovejas-450.jpg 450w" sizes="(max-width: 899px) 44vw, 17vw" width="450" height="600" alt="Ovejas junto a un muro de piedra, con la arboleda detrás" loading="lazy" decoding="async"></picture></button>
+              <figcaption>Ovejas junto a un muro.</figcaption>
+            </figure>
+          </div>
+          <div class="cerca">
+            <h3>A pie y en coche corto</h3>
+            <p>El santuario de Nosa Señora da Guía, a 1,7 km. La ruta del río Arnoia (PR-G 143), unos 11 km entre el santuario de Nosa Señora do Val y Escudeiros.</p>
+            <h3>Dónde comer</h3>
+            <p><b>O Forno do Lito</b>, en la praza Cervantes de Celanova. <b>O Muíño do Chirlo</b>, en un molino junto al río, en Celanova.</p>
+          </div>
+        </div>
+      </div>
+      <p class="alrededor__fuente">Distancias por carretera desde la casa, calculadas sobre OpenStreetMap.</p>
+    </div>
+  </section>
+
+  <!-- ============ 8. de noche: la piscina y la fachada encendidas ============ -->
+  <section id="de-noche" class="sec denoche" data-tramo="noche" data-luz="0.8" aria-labelledby="denoche-tit">
+    <div class="env">
+      <h2 class="denoche__tit" id="denoche-tit" data-partir>Y cuando se hace de noche</h2>
+      <div class="denoche__par">
+        <figure class="denoche__f">
+          <button type="button" class="foto-btn" data-visor="noche-piscina" aria-label="Ver más grande: la piscina iluminada"><picture data-foto="noche-piscina"><source type="image/avif" srcset="img/fotos/noche-piscina-480.avif 480w, img/fotos/noche-piscina-720.avif 720w" sizes="(max-width: 699px) 92vw, 46vw"><source type="image/webp" srcset="img/fotos/noche-piscina-480.webp 480w, img/fotos/noche-piscina-720.webp 720w" sizes="(max-width: 699px) 92vw, 46vw"><img src="img/fotos/noche-piscina-720.jpg" srcset="img/fotos/noche-piscina-480.jpg 480w, img/fotos/noche-piscina-720.jpg 720w" sizes="(max-width: 699px) 92vw, 46vw" width="720" height="480" alt="La piscina iluminada al anochecer, con la casa y el segundo edificio de piedra detrás" loading="lazy" decoding="async"></picture></button>
+          <figcaption>La piscina, con la luz bajo el agua.</figcaption>
+        </figure>
+        <figure class="denoche__f denoche__f--fachada">
+          <button type="button" class="foto-btn" data-visor="noche" aria-label="Ver más grande: la fachada de noche"><picture data-foto="noche"><source type="image/avif" srcset="img/fotos/noche-480.avif 480w, img/fotos/noche-800.avif 800w, img/fotos/noche-1024.avif 1024w" sizes="(max-width: 699px) 92vw, 40vw"><source type="image/webp" srcset="img/fotos/noche-480.webp 480w, img/fotos/noche-800.webp 800w, img/fotos/noche-1024.webp 1024w" sizes="(max-width: 699px) 92vw, 40vw"><img src="img/fotos/noche-800.jpg" srcset="img/fotos/noche-480.jpg 480w, img/fotos/noche-800.jpg 800w, img/fotos/noche-1024.jpg 1024w" sizes="(max-width: 699px) 92vw, 40vw" width="1024" height="686" alt="La fachada de granito de noche, iluminada desde el suelo, con la pérgola" loading="lazy" decoding="async"></picture></button>
+          <figcaption>La fachada, iluminada desde el suelo.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9. lo que dicen ============ -->
+  <section id="opiniones" class="sec opiniones" data-tramo="noche" data-luz="0.84" aria-labelledby="opiniones-tit">
+    <div class="env">
+      <header class="sec-cab">
+        <p class="eyebrow">Lo que dicen</p>
+        <h2 id="opiniones-tit" data-partir><em>«Casa impresionante!»</em></h2>
+        <p class="sec-cab__txt">Pilar, en Google, en septiembre de 2023. Y otros que han estado:</p>
+      </header>
+      <div class="citas">
+        <figure class="cita">
+          <blockquote><p>«Tiene todo lo necesario para pasar unos días en total tranquilidad. La equipación perfecta y el entorno espectacular.»</p></blockquote>
+          <figcaption><b>Ppm</b><span class="mono">Diciembre de 2023 · Google</span></figcaption>
+        </figure>
+        <figure class="cita">
+          <blockquote><p>«Gracias, Mercedes, por el increíble servicio, la rápida comunicación […]»</p></blockquote>
+          <figcaption><b>Saúl</b><span class="mono">Junio de 2025 · Google</span></figcaption>
+        </figure>
+        <figure class="cita">
+          <blockquote><p>«[…] maravillosa ubicación para hacer excursiones por los alrededores. Los dueños muy atentos y amables.»</p></blockquote>
+          <figcaption><b>Eugenio</b><span class="mono">Octubre de 2022 · Google</span></figcaption>
+        </figure>
+        <figure class="cita">
+          <blockquote><p>«Amplio, la piscina y la barbacoa un puntazo.»</p></blockquote>
+          <figcaption><b>Maite</b><span class="mono">Mayo de 2022 · Escapada Rural</span></figcaption>
+        </figure>
+        <figure class="cita">
+          <blockquote><p>«El trato de Mercedes fue espectacular.»</p></blockquote>
+          <figcaption><b>Alejandra</b><span class="mono">Agosto de 2019 · Escapada Rural</span></figcaption>
+        </figure>
+      </div>
+      <div class="opiniones__pie">
+        <p class="opiniones__nota"><span class="mono">En Google</span>«Excelente»</p>
+        <a class="enlace" href="https://maps.google.com/?cid=11817432215048157925" rel="noopener" target="_blank">Leer las reseñas en Google</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ reservar: la casa entera (DEMOSTRACIÓN, js/reserva.js) ============ -->
+<section class="sec reservar" id="reservar" data-tramo="noche" data-luz="0.9" aria-labelledby="reservar-tit">
+  <div class="env">
+    <header class="sec-cab reservar__cab">
+      <p class="eyebrow">Reservar</p>
+      <h2 id="reservar-tit" data-partir>La casa entera, <em>las noches que elijáis</em></h2>
+      <p class="sec-cab__txt">Elegid la llegada y la salida, cuántos venís y vuestros datos. Si lo preferís, llamad al <a class="enlace" href="tel:+34616887944">616 887 944</a> o escribid a <a class="enlace" href="mailto:info@acasadatulla.es">info@acasadatulla.es</a>: responden en menos de 24 horas.</p>
+    </header>
+    <p class="demo" role="note"><b>Demostración.</b> Así funcionará la reserva directa: las noches ocupadas son de ejemplo, los precios son supuestos y no se envía, se guarda ni se cobra nada.</p>
+    <div class="motor" id="motor" aria-live="off">
+      <noscript><p class="motor__sin">Para reservar sin JavaScript, llamad al <a href="tel:+34616887944">616 887 944</a>.</p></noscript>
+    </div>
+    <div class="reservar__saber">
+      <section class="saber" aria-labelledby="saber-tit">
+        <h3 id="saber-tit">Lo que hay que saber</h3>
+        <dl class="saber__lista">
+          <div><dt>La casa</dt><dd>Se alquila entera: hasta nueve personas, cuatro dormitorios dobles con baño (uno adaptado para movilidad reducida) y cuna si la necesitáis.</dd></div>
+          <div><dt>Mascotas</dt><dd>Se admiten, avisando antes de llegar. <span class="sup">por confirmar</span></dd></div>
+          <div><dt>Entrada y salida</dt><dd>Las horas se acuerdan con la casa al reservar. <span class="sup">por confirmar</span></dd></div>
+          <div><dt>En la casa</dt><dd>Calefacción, chimenea, cocina equipada con lavavajillas y microondas, lavadora, sala de juegos y televisión.</dd></div>
+          <div><dt>Hablan</dt><dd>Castellano, gallego, inglés y francés.</dd></div>
+        </dl>
+      </section>
+      <section class="saber" aria-labelledby="cancelar-tit">
+        <h3 id="cancelar-tit">Si tenéis que cancelar</h3>
+        <ul class="saber__pasos">
+          <li><b class="mono">30 días o más antes</b>Se cancela sin coste.</li>
+          <li><b class="mono">Menos de 30 días</b>Se habla con la casa.</li>
+        </ul>
+        <p class="saber__fuente">La cancelación de 30 días es la que publica su ficha de casasrurales.net. La señal y la forma de pago, por confirmar con la casa.</p>
+      </section>
+    </div>
+  </div>
+</section>
+  <!-- ============ cómo llegar ============ -->
+<section class="sec llegar" id="llegar" data-tramo="noche" data-luz="0.95" aria-labelledby="llegar-tit">
+  <div class="env llegar__in">
+    <div class="llegar__txt">
+      <p class="eyebrow">Cómo llegar</p>
+      <h2 id="llegar-tit" data-partir>Dentro de la aldea <em>de Gomesende</em></h2>
+      <address class="llegar__dir">
+        A Casa da Tulla<br>
+        Gomesende, 47<br>
+        32212 Gomesende (Ourense)
+      </address>
+      <p class="llegar__baj">En la aldea que da nombre al concello, parroquia de O Pao, en la Terra de Celanova y a 14 km de la frontera con Portugal. Acceso asfaltado; garaje para dos coches.</p>
+      <ul class="contacto">
+        <li><a href="tel:+34616887944"><b class="mono">616 887 944</b><span>Teléfono</span></a></li>
+        <li><a href="tel:+34650308490"><b class="mono">650 30 84 90</b><span>Otro teléfono</span></a></li>
+        <li><a href="mailto:info@acasadatulla.es"><b>info@acasadatulla.es</b><span>Correo</span></a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=42.1639316%2C-8.105519" rel="noopener" target="_blank"><b>Abrir en Google Maps</b><span>Para ir en coche</span></a></li>
+      </ul>
+    </div>
+    <div class="mapa" id="mapa">
+      <div class="map-consent" id="mapa-consent">
+        <svg class="map-consent__ferrado" viewBox="0 0 120 96" aria-hidden="true" focusable="false"><path d="M14 18h92l-10 70H24z M18 40h84 M21 64h78 M40 18l-3 70 M80 18l3 70"/></svg>
+        <p>El mapa es de Google y, al cargarlo, Google puede guardar cookies en tu navegador.</p>
+        <button type="button" class="btn btn--marca" id="mapa-btn">Ver el mapa</button>
+        <p class="map-consent__coord mono">42,16393 · −8,10552</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ pie: el ferrado colmado (lo llena el módulo de grano, js/grano.js), con el cielo de noche ============ -->
+<footer class="pie" id="pie" data-tramo="noche" data-luz="1">
+  <div class="pie__cielo" aria-hidden="true"></div>
+  <div class="env">
+    <div class="pie__ferrado">
+      <div class="ferrado" data-modulo="ferrado">
+        <!-- respaldo: el ferrado ya lleno, en línea -->
+        <svg class="ferrado__dibujo" viewBox="0 0 220 190" aria-hidden="true" focusable="false">
+          <path class="ferrado__colmo" d="M30 62 C58 30 82 22 110 21 C138 22 162 30 190 62 Z"/>
+          <g class="ferrado__granos"><path d="M60 52l5-2 M78 42l5 1 M96 34l5-1 M118 31l5 2 M138 38l5 1 M156 46l5 2 M70 58l5-1 M90 50l5 1 M110 44l5-2 M130 50l5 1 M148 56l5-1 M104 26l4 2 M122 40l4-2 M84 32l4 1"/></g>
+          <path class="ferrado__caja" d="M30 62h160l-16 112H46z"/>
+          <path class="ferrado__aro" d="M34 92h152 M40 140h140"/>
+          <path class="ferrado__tabla" d="M75 62l-5 112 M110 62v112 M145 62l5 112"/>
+        </svg>
+      </div>
+      <p class="pie__ferrado-eti"><span class="mono">un ferrado, colmado</span>«Está a tulla acugulada»: la tulla está llena hasta arriba.</p>
+    </div>
+    <div class="pie__cols">
+      <div>
+        <p class="pie__logo"><img src="marca/logo-240.png" srcset="marca/logo-240.png 1x, marca/logo-480.png 2x" width="140" height="61" alt="A Casa da Tulla" loading="lazy"></p>
+        <p>Casa de granito de 1637, rehabilitada en 2008. Se alquila entera, hasta nueve personas.</p>
+        <p>Gomesende, 47<br>32212 Gomesende (Ourense)</p>
+      </div>
+      <div>
+        <h2 class="pie__tit">Reservar</h2>
+        <p><a href="tel:+34616887944" class="mono">616 887 944</a><br><a href="tel:+34650308490" class="mono">650 30 84 90</a><br><a href="mailto:info@acasadatulla.es">info@acasadatulla.es</a></p>
+        <a class="btn btn--marca" href="#reservar">Ver fechas</a>
+      </div>
+      <div>
+        <h2 class="pie__tit">Por aquí</h2>
+        <p><a href="#tulla">La historia de la tulla</a><br><a href="#arboles">Las cuatro habitaciones</a><br><a href="#alrededor">Alrededor</a><br><a href="#llegar">Cómo llegar</a></p>
+      </div>
+    </div>
+    <div class="pie__legal">
+      <p>Casa de turismo rural inscrita en el Registro de Empresas y Actividades Turísticas de Galicia con el número <span class="mono">TR-OR-000096</span>.</p>
+      <nav aria-label="Legal"><a href="aviso-legal.html">Aviso legal</a><a href="privacidad.html">Privacidad</a><a href="cookies.html">Cookies</a><a href="accesibilidad.html">Accesibilidad</a><button type="button" id="abrir-cookies">Preferencias de cookies</button></nav>
+      <p>© <span id="anno">2026</span> A Casa da Tulla · Gomesende, Ourense</p>
+    </div>
+  </div>
+</footer>
+
+<div class="cookies" id="cookies" role="region" aria-label="Aviso de cookies" hidden>
+  <p>Esta web no usa cookies de análisis ni de publicidad. Guarda en tu navegador que has visto este aviso; las letras vienen de Google Fonts y el mapa de Google solo se carga si lo pides. <a href="cookies.html">Más información</a></p>
+  <div class="cookies__acc">
+    <button class="btn btn--marca" type="button" id="ck-si">Entendido</button>
+    <button class="btn btn--hueco" type="button" id="ck-no">Solo lo necesario</button>
+  </div>
+</div>
+
+<!-- MANDO DE MAQUETA (no viaja al cliente): solo con ?revision -->
+<div class="mando" id="mando" role="group" aria-label="Dos versiones de la misma web" hidden>
+  <span class="mando__eti">Versión</span>
+  <button type="button" data-densidad="tulla" aria-pressed="true">Tulla</button>
+  <button type="button" data-densidad="sobria" aria-pressed="false">Sobria</button>
+</div>
+<!-- fin del MANDO DE MAQUETA -->
+
+<!-- el foco del teclado: un trazo de pincel corto bajo el elemento (lo coloca main.js) -->
+<span class="foco-pincel" id="foco-pincel" aria-hidden="true"><svg viewBox="0 0 120 10" preserveAspectRatio="none" focusable="false"><path d="M2 6.2C14 4.4 26 5.6 38 4.9S62 3.6 76 4.6 104 5.2 118 3.4L117.4 6.6C104 7.8 90 6.9 76 7.4S50 8.6 36 7.9 12 7.4 2.6 8.4Z"/></svg></span>
+
+<!-- visor de fotos: se abre por el NOMBRE de la foto, no por su puesto -->
+<dialog class="visor" id="visor" aria-label="Foto">
+  <figure class="visor__fig">
+    <img id="visor-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" width="1024" height="768">
+    <figcaption id="visor-pie"></figcaption>
+  </figure>
+  <button type="button" class="visor__btn visor__btn--ant" id="visor-ant" aria-label="Foto anterior">‹</button>
+  <button type="button" class="visor__btn visor__btn--sig" id="visor-sig" aria-label="Foto siguiente">›</button>
+  <button type="button" class="visor__cerrar" id="visor-cerrar">Cerrar</button>
+  <p class="visor__n mono" id="visor-n" aria-live="polite"></p>
+</dialog>
+
+<!-- librerías (jsDelivr, con versión fija): Lenis suaviza el scroll; GSAP y ScrollTrigger los usan los módulos -->
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<!-- los módulos (cada uno en su archivo; si falta alguno, construir.mjs quita su etiqueta y se queda el respaldo del HTML) -->
+<script src="js/grano.js?v=e24b2d2c" defer></script>
+<script src="js/pincel.js?v=a290e326" defer></script>
+<script src="js/arboles.js?v=9c932040" defer></script>
+<!-- la web -->
+<script src="js/reserva.js?v=1a2085b3" defer></script>
+<script src="js/main.js?v=60539027" defer></script>
+<!-- el 3D de «La ruta del grano»: módulo diferido; si no carga, se queda el plano -->
+<script type="module" src="js/3d/arranque.js?v=5ec0a2f7" onerror="var r=document.getElementById('ruta');if(r)r.classList.add('sin-3d')"></script>
+</body>
+</html>

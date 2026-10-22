@@ -1,0 +1,137 @@
+/* ------------------------------------------------------------------
+   A Casa da Tulla · Entrada (agente Entrada): la cortina «El grano»,
+   la portada «Pincel» y el ferrado del pie. Todo bajo #cortina,
+   [data-modulo="pincel"] o [data-modulo="ferrado"]; colores y letras
+   de la web con var(--x, valor) por si estilos.css aún no está.
+   ------------------------------------------------------------------ */
+
+/* ================= cortina «El grano» =================
+   Solo se ve con html.cortina-activa (lo pone el script de la parte): sin JS no aparece nunca. */
+#cortina.cortina {
+  position: fixed; inset: 0; z-index: 1000; display: none;
+  width: 100%; height: 100%; overflow: hidden;
+  background: #2E2B28 url(../img/pincel/granito.webp) 0 0 / 320px repeat;
+  color: var(--cal, #F3EEE4);
+  contain: strict;
+}
+html.cortina-activa #cortina.cortina { display: block; }
+#cortina.cortina[hidden], html.cortina-fuera #cortina.cortina { display: none !important; }
+@media (prefers-reduced-motion: reduce) { #cortina.cortina { display: none !important; } }
+html.cortina-activa, html.cortina-activa body { overflow: hidden; }
+#cortina .cortina__lienzo { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+#cortina .cortina__volando { pointer-events: none; }
+/* al empezar el barrido el lienzo borra con la brocha: detrás tiene que estar la portada, no el granito */
+#cortina.es-abriendo { background: transparent; pointer-events: none; }
+
+/* respaldo si js/grano.js no llega: el número y el nombre en letra (aparecen a los 1,3 s;
+   la red de seguridad de la parte retira la cortina a los 2,5 s) */
+#cortina .cortina__texto {
+  position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 6px;
+  text-align: center; opacity: 0; animation: cortina-texto .5s ease 1.3s forwards;
+}
+#cortina.es-lienzo .cortina__texto { display: none; }
+#cortina .cortina__anno { font: 400 clamp(7rem, 24vw, 19rem)/.9 var(--f-tit, 'IM Fell English', Georgia, serif); color: var(--paja, #D9B46A); }
+#cortina .cortina__nombre { font: 400 clamp(1.7rem, 3.4vw, 3.6rem)/1.1 var(--f-tit, 'IM Fell English', Georgia, serif); margin-top: 10px; }
+#cortina .cortina__lugar { font: 400 .8rem/1.4 var(--f-mono, 'Spline Sans Mono', monospace); letter-spacing: .32em; text-transform: uppercase; color: var(--paja, #D9B46A); }
+@keyframes cortina-texto { to { opacity: 1; } }
+
+/* ================= portada «Pincel» =================
+   Respaldo (sin JS o antes de montar): lo pinta la web (.portada__pincel con su recorte).
+   Montado: una escena con su proporción, encajada en la caja que da la web (container query). */
+[data-modulo="pincel"][data-montado="1"] {
+  container-type: size; container-name: pincel;
+  display: flex; align-items: center; justify-content: flex-end;
+}
+[data-modulo="pincel"] .pincel__escena {
+  --pincel-marco: ancho;
+  --fila: 46px;
+  position: relative; flex: none;
+  width: 100%;
+  width: min(100cqw, calc((100cqh - var(--fila)) * 1000 / 949));
+}
+/* la foto de noche solo tiene unos 650 px reales: como mucho 1,3× su detalle */
+[data-modulo="pincel"][data-foto="noche"] .pincel__escena { max-width: 845px; }
+[data-modulo="pincel"] .pincel__lamina { position: relative; width: 100%; aspect-ratio: 1000 / 949; }
+[data-modulo="pincel"] .pincel__logo { position: absolute; left: 0; top: 0; width: 56%; aspect-ratio: 1058 / 462; z-index: 2; pointer-events: none; }
+[data-modulo="pincel"] .pincel__logo > picture, [data-modulo="pincel"] .pincel__logo > picture > img { display: block; width: 100%; height: auto; }
+[data-modulo="pincel"] .pincel__marco {
+  position: absolute; left: 0; top: 24.76%; width: 100%; height: 75.24%; z-index: 1;
+  -webkit-mask: url(../img/pincel/marco-ancho.svg) 0 0 / 100% 100% no-repeat;
+  mask: url(../img/pincel/marco-ancho.svg) 0 0 / 100% 100% no-repeat;
+}
+[data-modulo="pincel"] .pincel__marco > picture, [data-modulo="pincel"] .pincel__marco > img,
+[data-modulo="pincel"] .pincel__marco > picture > img {
+  position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; clip-path: none; -webkit-mask: none; mask: none;
+}
+/* lienzos: el del logo (con su margen para la brocha) y el del marco (pintado y gesto) */
+[data-modulo="pincel"] .pincel__lienzo-logo { position: absolute; display: block; pointer-events: none; }
+[data-modulo="pincel"] .pincel__lienzo { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; pointer-events: none; }
+[data-modulo="pincel"] .pincel__lienzo.es-visible, [data-modulo="pincel"] .pincel__lienzo.es-gesto { opacity: 1; }
+[data-modulo="pincel"] .pincel__lienzo.es-gesto { pointer-events: auto; touch-action: pan-y; cursor: crosshair; }
+/* las letras del logo (no son brochazos): se descubren de izquierda a derecha con una máscara que corre */
+[data-modulo="pincel"] .pincel__letras {
+  position: absolute; overflow: hidden; pointer-events: none;
+  -webkit-mask: linear-gradient(90deg, #000 45%, transparent 55%) 100% 0 / 220% 100% no-repeat;
+  mask: linear-gradient(90deg, #000 45%, transparent 55%) 100% 0 / 220% 100% no-repeat;
+}
+[data-modulo="pincel"] .pincel__letras img { position: absolute; max-width: none; height: auto; display: block; }
+
+/* mientras se pinta: el logo real y la foto esperan (opacity, nunca display: la foto ya contó para el LCP) */
+[data-modulo="pincel"] .pincel__logo > picture, [data-modulo="pincel"] .pincel__marco > picture,
+[data-modulo="pincel"] .pincel__marco > img { transition: opacity .45s ease; }
+[data-modulo="pincel"].es-pintando .pincel__logo > picture,
+[data-modulo="pincel"].es-pintando .pincel__marco > picture,
+[data-modulo="pincel"].es-pintando .pincel__marco > img { opacity: 0; }
+
+/* la fila: «Verla de noche» y la pista del gesto */
+[data-modulo="pincel"] .pincel__fila {
+  height: var(--fila); display: flex; align-items: center; justify-content: flex-end; gap: 4px 14px; flex-wrap: wrap;
+  font: 400 .74rem/1.3 var(--f-mono, 'Spline Sans Mono', monospace); letter-spacing: .04em;
+  color: var(--texto-2, #5B5047);
+  opacity: 1; transition: opacity .6s ease;
+}
+[data-modulo="pincel"].es-pintando .pincel__fila { opacity: 0; }
+[data-modulo="pincel"] .pincel__otra {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 8px 14px 8px 12px;
+  border: 1px solid var(--linea, rgba(43, 38, 32, .25)); border-radius: 999px; background: transparent;
+  color: var(--texto, #2B2620); font: inherit; letter-spacing: .06em; cursor: pointer;
+  transition: background-color .25s, color .25s, border-color .25s;
+}
+[data-modulo="pincel"] .pincel__otra:hover { background: var(--texto, #2B2620); color: var(--fondo, #F3EEE4); border-color: var(--texto, #2B2620); }
+[data-modulo="pincel"] .pincel__otra:disabled { opacity: .45; cursor: default; background: transparent; color: var(--texto, #2B2620); }
+[data-modulo="pincel"] .pincel__otra svg { flex: none; color: var(--rio, #09A3DF); }
+[data-modulo="pincel"] .pincel__otra:hover svg { color: currentColor; }
+
+/* caja alta (móvil, si la web da una caja vertical): el logo arriba más grande y la pincelada alta */
+@container pincel (aspect-ratio < 0.95) {
+  [data-modulo="pincel"] .pincel__escena { --pincel-marco: alto; width: min(100cqw, calc((100cqh - var(--fila)) * 1000 / 1250)); }
+  [data-modulo="pincel"] .pincel__lamina { aspect-ratio: 1000 / 1250; }
+  [data-modulo="pincel"] .pincel__logo { width: 80%; }
+  [data-modulo="pincel"] .pincel__marco {
+    top: 26.4%; height: 73.6%;
+    -webkit-mask-image: url(../img/pincel/marco-alto.svg); mask-image: url(../img/pincel/marco-alto.svg);
+  }
+  [data-modulo="pincel"] .pincel__fila { justify-content: center; }
+}
+@container pincel (max-width: 640px) {
+  [data-modulo="pincel"] .pincel__escena { margin-inline: auto; }
+}
+@container pincel (max-width: 520px) {
+  [data-modulo="pincel"] .pincel__fila { justify-content: center; }
+  [data-modulo="pincel"] .pincel__pista { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-modulo="pincel"] .pincel__logo > picture, [data-modulo="pincel"] .pincel__marco > picture,
+  [data-modulo="pincel"] .pincel__marco > img, [data-modulo="pincel"] .pincel__fila { transition: none; }
+}
+
+/* ================= ferrado del pie ================= */
+[data-modulo="ferrado"] .ferrado__lienzo-caja { position: relative; width: 100%; aspect-ratio: 260 / 230; }
+[data-modulo="ferrado"] .ferrado__lienzo-caja > canvas,
+[data-modulo="ferrado"] .ferrado__lienzo-caja > svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+[data-modulo="ferrado"] .ferrado__lienzo-caja > svg { overflow: visible; }
+[data-modulo="ferrado"] .ferrado__dibujo path { fill: none; stroke: var(--cal, #F3EEE4); stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+[data-modulo="ferrado"] .ferrado__dibujo .ferrado__duela { stroke-width: 1; opacity: .5; }
+[data-modulo="ferrado"] .ferrado__dibujo .ferrado__aro { stroke: var(--farol, #F2C46D); stroke-width: 2.2; opacity: .85; }
+[data-modulo="ferrado"] .ferrado__dibujo .ferrado__boca-dentro { opacity: .55; }
+[data-modulo="ferrado"] .ferrado__dibujo .ferrado__canto { stroke-width: 1; opacity: .45; }
